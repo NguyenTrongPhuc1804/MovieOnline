@@ -18,12 +18,11 @@ function SlideCard(props) {
   // useEffect(() => {
   //   dispatch(getFilmHomePage());
   // }, []);
-  const { imageArray } = props;
-  console.log(imageArray);
+  const { filmNew } = props;
   const handleRenderCard = () => {
-    return imageArray?.map((img, i) => (
+    return filmNew?.map((film, i) => (
       <SwiperSlide key={i}>
-        <Card img={img} />
+        <Card film={film} />
       </SwiperSlide>
     ));
   };
@@ -52,8 +51,8 @@ function SlideCard(props) {
         //         navigation
         //         pagination={{ clickable: true }}
         //         scrollbar={{ draggable: true }}
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log("slide change")}
+        // onSwiper={(swiper) => console.log(swiper)}
+        // onSlideChange={() => console.log("slide change")}
         className="mySwiper"
       >
         {handleRenderCard()}
