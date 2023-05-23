@@ -58,7 +58,7 @@ function Header() {
                 className="flex items-center gap-x-1 text-sm font-semibold leading-6 "
                 aria-expanded="false"
               >
-                Product
+                Phim Mới
                 <svg
                   className="h-5 w-5 flex-none "
                   viewBox="0 0 20 20"
@@ -373,7 +373,7 @@ function Header() {
                       aria-controls="disclosure-1"
                       aria-expanded="false"
                     >
-                      Product{" "}
+                      Phim Mới{" "}
                       {/*
             Expand/collapse icon, toggle classes based on menu open state.
 

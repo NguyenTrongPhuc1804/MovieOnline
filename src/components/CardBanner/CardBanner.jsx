@@ -89,7 +89,7 @@ function CardBanner(props) {
               </div>
             )}
 
-            <Button text="watch now" />
+            <Button text="xem ngay" />
           </motion.div>
         </motion.div>
       </div>
