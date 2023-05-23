@@ -1,4 +1,3 @@
-import CardBanner from "../../components/CardBanner/CardBanner";
 import SlideBanner from "../../components/SlideBanner/SlideBanner";
 import SlideCard from "../../components/SlideCard/SlideCard";
 import SlidePricing from "../../components/SlidePricing/SlidePricing";
@@ -10,6 +9,7 @@ import {
   getPhimHoatHinh,
   getPhimLe,
 } from "../../redux/reducer/ManagementFilmSlice";
+import CardBanner from "../../components/SlideBanner/CardBanner/CardBanner";
 function Home() {
   const dispatch = useDispatch();
   const filmNew = useSelector((state) => state.ManagementFilmSlice.homeFilm);

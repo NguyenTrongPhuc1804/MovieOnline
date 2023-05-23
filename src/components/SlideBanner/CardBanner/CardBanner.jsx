@@ -1,9 +1,8 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import imgBanner from "../../assets/images/black-banner.png";
-import Button from "../Button/Button";
 import ReactHtmlParser from "react-html-parser";
+import Button from "../../Button/Button";
 function CardBanner(props) {
   const [contents, setContent] = useState("");
   const { film } = props;
@@ -37,7 +36,7 @@ function CardBanner(props) {
           // srcSet="https://img.ophim1.com/uploads/movies/2359-thumb.jpg"
           alt=""
         />
-        <motion.div className="bg-black rounded-lg bg-opacity-50 absolute px-10 py-10 z-10 sm:w-[40%] top-1/2 transform  -translate-y-1/2  p-[3%]  text-white   bg-opacity-70 w-full ">
+        <motion.div className="bg-black rounded-lg bg-opacity-40 absolute px-10 py-10 z-10 sm:w-[40%] top-1/2 transform  -translate-y-1/2  p-[3%]  text-white   bg-opacity-70 w-full ">
           {film?.name?.length > 50 ? (
             <motion.h1
               whileInView={({ x: [-100, 0] }, { opacity: 0 })}

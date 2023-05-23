@@ -59,18 +59,6 @@ function Header() {
                 aria-expanded="false"
               >
                 Phim Mới
-                <svg
-                  className="h-5 w-5 flex-none "
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                    clipRule="evenodd"
-                  />
-                </svg>
               </button>{" "}
               {/*
     'Product' flyout menu, show/hide based on flyout menu state.
@@ -85,7 +73,7 @@ function Header() {
               <div
                 className={`${
                   state.openProduct ? "" : "hidden"
-                } absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5`}
+                } absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white text-black shadow-lg ring-1 ring-gray-900/5`}
               >
                 <div className="p-4">
                   <div className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50 hover:text-black">
@@ -265,15 +253,130 @@ function Header() {
                 </div>
               </div>
             </div>
-            <a href="#" className="text-sm font-semibold leading-6 ">
-              Features
-            </a>
-            <a href="#" className="text-sm font-semibold leading-6 ">
-              Marketplace
-            </a>
-            <a href="#" className="text-sm font-semibold leading-6 ">
-              Company
-            </a>
+            <div className="relative">
+              <button
+                onClick={() => {
+                  setState({
+                    ...state,
+                    openProduct: !state.openProduct,
+                  });
+                }}
+                type="button"
+                className="flex items-center gap-x-1 text-sm font-semibold leading-6 "
+                aria-expanded="false"
+              >
+                Phim Lẻ
+              </button>{" "}
+              {/*
+    'Product' flyout menu, show/hide based on flyout menu state.
+
+    Entering: "transition ease-out duration-200"
+      From: "opacity-0 translate-y-1"
+      To: "opacity-100 translate-y-0"
+    Leaving: "transition ease-in duration-150"
+      From: "opacity-100 translate-y-0"
+      To: "opacity-0 translate-y-1"
+  */}{" "}
+            </div>
+            <div className="relative">
+              <button
+                onClick={() => {
+                  setState({
+                    ...state,
+                    openProduct: !state.openProduct,
+                  });
+                }}
+                type="button"
+                className="flex items-center gap-x-1 text-sm font-semibold leading-6 "
+                aria-expanded="false"
+              >
+                Phim Bộ
+              </button>{" "}
+              {/*
+    'Product' flyout menu, show/hide based on flyout menu state.
+
+    Entering: "transition ease-out duration-200"
+      From: "opacity-0 translate-y-1"
+      To: "opacity-100 translate-y-0"
+    Leaving: "transition ease-in duration-150"
+      From: "opacity-100 translate-y-0"
+      To: "opacity-0 translate-y-1"
+  */}{" "}
+            </div>
+            <div className="relative">
+              <button
+                onClick={() => {
+                  setState({
+                    ...state,
+                    openProduct: !state.openProduct,
+                  });
+                }}
+                type="button"
+                className="flex items-center gap-x-1 text-sm font-semibold leading-6 "
+                aria-expanded="false"
+              >
+                Thể Loại
+                <svg
+                  className="h-5 w-5 flex-none "
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>{" "}
+              {/*
+    'Product' flyout menu, show/hide based on flyout menu state.
+
+    Entering: "transition ease-out duration-200"
+      From: "opacity-0 translate-y-1"
+      To: "opacity-100 translate-y-0"
+    Leaving: "transition ease-in duration-150"
+      From: "opacity-100 translate-y-0"
+      To: "opacity-0 translate-y-1"
+  */}{" "}
+            </div>
+            <div className="relative">
+              <button
+                onClick={() => {
+                  setState({
+                    ...state,
+                    openProduct: !state.openProduct,
+                  });
+                }}
+                type="button"
+                className="flex items-center gap-x-1 text-sm font-semibold leading-6 "
+                aria-expanded="false"
+              >
+                Quốc Gia
+                <svg
+                  className="h-5 w-5 flex-none "
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>{" "}
+              {/*
+    'Product' flyout menu, show/hide based on flyout menu state.
+
+    Entering: "transition ease-out duration-200"
+      From: "opacity-0 translate-y-1"
+      To: "opacity-100 translate-y-0"
+    Leaving: "transition ease-in duration-150"
+      From: "opacity-100 translate-y-0"
+      To: "opacity-0 translate-y-1"
+  */}{" "}
+            </div>
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <form>
@@ -379,18 +482,6 @@ function Header() {
 
             Open: "rotate-180", Closed: ""
           */}{" "}
-                      <svg
-                        className="h-5 w-5 flex-none"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
                     </button>{" "}
                     {/* 'Product' sub-menu, show/hide based on menu state. */}{" "}
                     <div
@@ -443,24 +534,118 @@ function Header() {
                       </a>
                     </div>
                   </div>
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7  hover:bg-gray-50 hover:text-black"
-                  >
-                    Features
-                  </a>
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7  hover:bg-gray-50 hover:text-black"
-                  >
-                    Marketplace
-                  </a>
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7  hover:bg-gray-50 hover:text-black"
-                  >
-                    Company
-                  </a>
+                  <div className="-mx-3">
+                    <button
+                      onClick={() => {
+                        setState({
+                          ...state,
+                          openProduct: !state.openProduct,
+                        });
+                      }}
+                      type="button"
+                      className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50 hover:text-black"
+                      aria-controls="disclosure-1"
+                      aria-expanded="false"
+                    >
+                      Phim Lẻ{" "}
+                      {/*
+            Expand/collapse icon, toggle classes based on menu open state.
+
+            Open: "rotate-180", Closed: ""
+          */}{" "}
+                    </button>{" "}
+                    {/* 'Product' sub-menu, show/hide based on menu state. */}{" "}
+                  </div>
+                  <div className="-mx-3">
+                    <button
+                      onClick={() => {
+                        setState({
+                          ...state,
+                          openProduct: !state.openProduct,
+                        });
+                      }}
+                      type="button"
+                      className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50 hover:text-black"
+                      aria-controls="disclosure-1"
+                      aria-expanded="false"
+                    >
+                      Phim Bộ{" "}
+                      {/*
+            Expand/collapse icon, toggle classes based on menu open state.
+
+            Open: "rotate-180", Closed: ""
+          */}{" "}
+                    </button>{" "}
+                    {/* 'Product' sub-menu, show/hide based on menu state. */}{" "}
+                  </div>
+                  <div className="-mx-3">
+                    <button
+                      onClick={() => {
+                        setState({
+                          ...state,
+                          openProduct: !state.openProduct,
+                        });
+                      }}
+                      type="button"
+                      className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50 hover:text-black"
+                      aria-controls="disclosure-1"
+                      aria-expanded="false"
+                    >
+                      Thể Loại{" "}
+                      {/*
+            Expand/collapse icon, toggle classes based on menu open state.
+
+            Open: "rotate-180", Closed: ""
+          */}{" "}
+                      <svg
+                        className="h-5 w-5 flex-none"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </button>{" "}
+                    {/* 'Product' sub-menu, show/hide based on menu state. */}{" "}
+                  </div>
+                  <div className="-mx-3">
+                    <button
+                      onClick={() => {
+                        setState({
+                          ...state,
+                          openProduct: !state.openProduct,
+                        });
+                      }}
+                      type="button"
+                      className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50 hover:text-black"
+                      aria-controls="disclosure-1"
+                      aria-expanded="false"
+                    >
+                      Quốc Gia{" "}
+                      {/*
+            Expand/collapse icon, toggle classes based on menu open state.
+
+            Open: "rotate-180", Closed: ""
+          */}{" "}
+                      <svg
+                        className="h-5 w-5 flex-none"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </button>{" "}
+                    {/* 'Product' sub-menu, show/hide based on menu state. */}{" "}
+                  </div>
                 </div>
                 <div className="py-6">
                   <form>

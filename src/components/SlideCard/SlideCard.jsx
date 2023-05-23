@@ -6,10 +6,10 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/swiper-bundle.css";
-import Card from "../Card/Card";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFilmHomePage } from "../../redux/reducer/ManagementFilmSlice";
+import Card from "./Card/Card";
 function SlideCard(props) {
   const { gap } = props;
   // const dispatch = useDispatch();

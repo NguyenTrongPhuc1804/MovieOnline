@@ -16,7 +16,7 @@ function Card(props) {
         />
         <div className="absolute bottom-0 pb-6 bg-black p-[3%]  text-white  bg-opacity-70 w-full ">
           <h1 className="text-xl line-clamp-1  mb-4 font-bold">{film.name}</h1>
-          <div className="flex sm:justify-start justify-center font-medium">
+          <div className="sm:flex flex-col sm:justify-start justify-center font-medium">
             {/* <div className="flex items-center mr-3 text-xs">
               <i className="fa-solid fa-star mr-2 text-red-500"></i>
               <p>9.5</p>
