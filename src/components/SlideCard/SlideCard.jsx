@@ -18,9 +18,9 @@ function SlideCard(props) {
   // useEffect(() => {
   //   dispatch(getFilmHomePage());
   // }, []);
-  const { filmNew } = props;
+  const { listFilm } = props;
   const handleRenderCard = () => {
-    return filmNew?.map((film, i) => (
+    return listFilm?.map((film, i) => (
       <SwiperSlide key={i}>
         <Card film={film} />
       </SwiperSlide>

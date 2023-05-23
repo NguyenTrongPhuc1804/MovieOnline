@@ -10,20 +10,12 @@ function Card(props) {
         </button>
         <img
           className="w-full h-[300px] sm:h-[500px] object-cover group-hover:scale-110 transition"
-          src={film.thumb_url}
-          // srcSet="https://img.ophim1.com/uploads/movies/2359-thumb.jpg"
+          // src={film.thumb_url}
+          src={`https://img.ophim1.com/uploads/movies/${film.thumb_url}`}
           alt=""
         />
         <div className="absolute bottom-0 pb-6 bg-black p-[3%]  text-white  bg-opacity-70 w-full ">
-          {film.origin_name.length > 16 ? (
-            <h1 className="text-xl truncate mb-4 font-bold">
-              {film.origin_name.slice(0, 16)}...
-            </h1>
-          ) : (
-            <h1 className="text-xl truncate mb-4 font-bold">
-              {film.origin_name}
-            </h1>
-          )}
+          <h1 className="text-xl line-clamp-1  mb-4 font-bold">{film.name}</h1>
           <div className="flex sm:justify-start justify-center font-medium">
             {/* <div className="flex items-center mr-3 text-xs">
               <i className="fa-solid fa-star mr-2 text-red-500"></i>
@@ -37,6 +29,13 @@ function Card(props) {
               <p className=" mr-2">{film.quality}</p>
               <p>{film.lang}+</p>
             </div>
+            {film.type === "single" ? (
+              ""
+            ) : (
+              <div className="flex items-center mr-3 text-xs">
+                <p>{film.episode_current}</p>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -40,7 +40,7 @@ function CardBanner(props) {
         <motion.div className="bg-black rounded-lg bg-opacity-50 absolute px-10 py-10 z-10 sm:w-[40%] top-1/2 transform  -translate-y-1/2  p-[3%]  text-white   bg-opacity-70 w-full ">
           {film?.name?.length > 50 ? (
             <motion.h1
-              whileInView={{ x: [-100, 0] }}
+              whileInView={({ x: [-100, 0] }, { opacity: 0 })}
               transition={{ ease: "easeOut", duration: 2 }}
               className="sm:text-4xl  text-2xl mb-5 font-bold"
             >
@@ -48,7 +48,7 @@ function CardBanner(props) {
             </motion.h1>
           ) : (
             <motion.h1
-              whileInView={{ x: [-100, 0] }}
+              whileInView={{ x: [-100, 0], opacity: [0, 1] }}
               transition={{ ease: "easeOut", duration: 2 }}
               className="sm:text-4xl   text-2xl mb-5 font-bold"
             >
@@ -57,7 +57,7 @@ function CardBanner(props) {
           )}
 
           <motion.div
-            whileInView={{ x: [-100, 0] }}
+            whileInView={{ x: [-100, 0], opacity: [0, 1] }}
             transition={{ ease: "easeOut", duration: 2 }}
             className="flex justify-start font-medium mb-3 sm:mb-9"
           >
@@ -75,7 +75,7 @@ function CardBanner(props) {
             </div>
           </motion.div>
           <motion.div
-            whileInView={{ x: [-100, 0] }}
+            whileInView={{ x: [-100, 0], opacity: [0, 1] }}
             transition={{ ease: "easeOut", duration: 2 }}
             className=" justify-start font-medium "
           >

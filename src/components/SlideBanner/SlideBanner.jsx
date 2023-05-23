@@ -1,29 +1,20 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-  Autoplay,
-} from "swiper";
-import React, { useEffect } from "react";
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/swiper-bundle.css";
 import CardBanner from "../CardBanner/CardBanner";
-import { useDispatch, useSelector } from "react-redux";
 
 function SlideBanner(props) {
-  const { filmNew } = props;
-  const dispatch = useDispatch();
-  // for (let i in filmNew) {
-  //   console.log(filmNew[i]);
+  const { listFilm } = props;
+  // for (let i in listFilm) {
+  //   console.log(listFilm[i]);
   // }
 
   const handleRenderCard = () => {
-    return filmNew?.slice(1, filmNew.length).map((film, i) => (
+    return listFilm?.slice(1, listFilm?.length).map((film, i) => (
       <SwiperSlide key={i}>
         <CardBanner film={film} />
       </SwiperSlide>
@@ -39,7 +30,11 @@ function SlideBanner(props) {
 
           disableOnInteraction: false,
         }}
-        speed={500}
+        pagination={{
+          // dynamicBullets: true,
+          clickable: true,
+        }}
+        speed={1000}
         spaceBetween={0}
         slidesPerView={1}
         navigation={{
@@ -47,17 +42,17 @@ function SlideBanner(props) {
           nextEl: ".swiper-button-next",
           clickable: true,
         }}
-        // breakpoints={{
-        //   640: {
-        //     slidesPerView: 2,
-        //   },
-        //   768: {
-        //     slidesPerView: 3,
-        //   },
-        //   1024: {
-        //     slidesPerView: 4,
-        //   },
-        // }}
+        breakpoints={{
+          640: {
+            // slidesPerView: 2,
+          },
+          768: {
+            // slidesPerView: 3,
+          },
+          1024: {
+            // slidesPerView: 4,
+          },
+        }}
         //         navigation
         //         pagination={{ clickable: true }}
         //         scrollbar={{ draggable: true }}
@@ -66,12 +61,12 @@ function SlideBanner(props) {
         className="mySwiper"
       >
         {handleRenderCard()}
-        <div className="swiper-button-prev after:content-none text-sm transition h-[100px]  w-[100px] ">
+        {/* <div className="swiper-button-prev after:content-none text-sm transition h-[100px]  w-[100px] ">
           <i className="fa-solid fa-chevron-left text-3xl text-white hover:text-red-700 transition-all"></i>
         </div>
         <div className="swiper-button-next after:content-none text-sm transition h-[100px]  w-[100px] ">
           <i className="fa-solid fa-chevron-right text-3xl text-white hover:text-red-700 transition-all"></i>
-        </div>
+        </div> */}
       </Swiper>
     </div>
   );
