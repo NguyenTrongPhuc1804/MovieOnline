@@ -23,7 +23,7 @@ function SlideBanner(props) {
   // }
 
   const handleRenderCard = () => {
-    return filmNew?.map((film, i) => (
+    return filmNew?.slice(1, filmNew.length).map((film, i) => (
       <SwiperSlide key={i}>
         <CardBanner film={film} />
       </SwiperSlide>
@@ -39,7 +39,7 @@ function SlideBanner(props) {
 
           disableOnInteraction: false,
         }}
-        speed={2000}
+        speed={500}
         spaceBetween={0}
         slidesPerView={1}
         navigation={{

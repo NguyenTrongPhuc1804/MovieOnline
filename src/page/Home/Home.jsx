@@ -3,17 +3,15 @@ import SlideBanner from "../../components/SlideBanner/SlideBanner";
 import SlideCard from "../../components/SlideCard/SlideCard";
 import SlidePricing from "../../components/SlidePricing/SlidePricing";
 import { useSelector, useDispatch } from "react-redux";
-import React, { useState, useEffect } from "react";
-import {
-  getFilmHomePage,
-  getFilmInfo,
-} from "../../redux/reducer/ManagementFilmSlice";
+import { useEffect } from "react";
+import { getFilmHomePage } from "../../redux/reducer/ManagementFilmSlice";
 function Home() {
   const dispatch = useDispatch();
   const filmNew = useSelector((state) => state.ManagementFilmSlice.homeFilm);
 
   useEffect(() => {
     dispatch(getFilmHomePage());
+    // dispatch(getPhimLe());
   }, []);
   return (
     <div>
@@ -45,7 +43,7 @@ function Home() {
         </div>
       </div>
       <div className="mt-[80px]">
-        <CardBanner />
+        <CardBanner film={filmNew[0]} />
       </div>
       <div className="mt-[80px]">
         <div className="relative px-5 py-2 text-3xl font-bold my-5 text-white">

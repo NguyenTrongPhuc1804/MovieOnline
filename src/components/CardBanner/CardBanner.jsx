@@ -1,21 +1,32 @@
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import imgBanner from "../../assets/images/black-banner.png";
-import { getFilmInfo } from "../../redux/reducer/ManagementFilmSlice";
 import Button from "../Button/Button";
-import parse from "html-react-parser";
+import ReactHtmlParser from "react-html-parser";
 function CardBanner(props) {
-  const dispatch = useDispatch();
+  const [contents, setContent] = useState("");
   const { film } = props;
-  console.log(film?.content.slice(100));
-  const htmlString =
-    "<div><h1>Hello, world!</h1><p>This is a paragraph.</p></div>";
-  useEffect(() => {}, []);
+  function isDOM(str) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(str, "text/html");
+    const el = doc.body.firstChild;
+    return el instanceof HTMLElement;
+  }
+
+  useEffect(() => {
+    if (film?.content) {
+      if (isDOM(film?.content)) {
+        let arrItem = ReactHtmlParser(film?.content);
+        setContent(arrItem);
+      } else {
+        setContent(film?.content);
+      }
+    }
+  }, [film?.content]);
   return (
     <>
       <div className="wrapper relative cursor-pointer   transition-all sm:h-[80vh] h-[51vh] group overflow-hidden h-full">
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         <button className="text-5xl  z-10 group-hover:block hidden transition-all absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
           <i className="fa-solid fa-play  bg-black bg-opacity-70 hover:bg-yellow-500 hover:bg-opacity-50 transition-colors  py-5 px-7 rounded-full text-white"></i>
         </button>
@@ -26,28 +37,28 @@ function CardBanner(props) {
           // srcSet="https://img.ophim1.com/uploads/movies/2359-thumb.jpg"
           alt=""
         />
-        <div className="absolute px-10 py-4 z-10 sm:w-[40%] top-1/2 transform  -translate-y-1/2  p-[3%]  text-white   bg-opacity-70 w-full ">
-          {film?.name.length > 50 ? (
+        <motion.div className="bg-black rounded-lg bg-opacity-50 absolute px-10 py-10 z-10 sm:w-[40%] top-1/2 transform  -translate-y-1/2  p-[3%]  text-white   bg-opacity-70 w-full ">
+          {film?.name?.length > 50 ? (
             <motion.h1
-              whileInView={{ opacity: [0, 1] }}
-              transition={{ ease: "easeOut", duration: 0.75 }}
-              className="sm:text-5xl text-2xl mb-5 font-bold"
+              whileInView={{ x: [-100, 0] }}
+              transition={{ ease: "easeOut", duration: 2 }}
+              className="sm:text-4xl  text-2xl mb-5 font-bold"
             >
-              {film?.name.slice(0, 50)}...
+              {film?.name.slice(0, 50)}.
             </motion.h1>
           ) : (
             <motion.h1
-              whileInView={{ opacity: [0, 1] }}
-              transition={{ ease: "easeOut", duration: 0.75 }}
-              className="sm:text-5xl text-2xl mb-5 font-bold"
+              whileInView={{ x: [-100, 0] }}
+              transition={{ ease: "easeOut", duration: 2 }}
+              className="sm:text-4xl   text-2xl mb-5 font-bold"
             >
               {film?.name}
             </motion.h1>
           )}
 
           <motion.div
-            whileInView={{ opacity: [0, 1] }}
-            transition={{ ease: "easeOut", duration: 0.75 }}
+            whileInView={{ x: [-100, 0] }}
+            transition={{ ease: "easeOut", duration: 2 }}
             className="flex justify-start font-medium mb-3 sm:mb-9"
           >
             <div className="flex items-center mr-3 text-xs">
@@ -64,21 +75,23 @@ function CardBanner(props) {
             </div>
           </motion.div>
           <motion.div
-            whileInView={{ y: [-100, 0] }}
-            transition={{ ease: "easeOut", duration: 1 }}
+            whileInView={{ x: [-100, 0] }}
+            transition={{ ease: "easeOut", duration: 2 }}
             className=" justify-start font-medium "
           >
-            {film?.content.length > 150 ? (
-              <p className="mb-5 text-xs sm:text-base">
-                {film?.content.slice(0, 150)}...
-              </p>
+            {contents.length > 150 ? (
+              <div className="mb-5 line-clamp-3   text-xs sm:text-base">
+                {contents}
+              </div>
             ) : (
-              <p className="mb-5 text-xs sm:text-base">{film?.content}</p>
+              <div className="mb-5 line-clamp-3   text-xs sm:text-base">
+                {contents}
+              </div>
             )}
 
             <Button text="watch now" />
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </>
   );

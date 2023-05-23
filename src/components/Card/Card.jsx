@@ -15,12 +15,14 @@ function Card(props) {
           alt=""
         />
         <div className="absolute bottom-0 pb-6 bg-black p-[3%]  text-white  bg-opacity-70 w-full ">
-          {film.origin_name.length > 14 ? (
-            <h1 className="text-xl mb-4 font-bold">
-              {film.origin_name.slice(0, 14)}...
+          {film.origin_name.length > 16 ? (
+            <h1 className="text-xl truncate mb-4 font-bold">
+              {film.origin_name.slice(0, 16)}...
             </h1>
           ) : (
-            <h1 className="text-xl mb-4 font-bold">{film.origin_name}</h1>
+            <h1 className="text-xl truncate mb-4 font-bold">
+              {film.origin_name}
+            </h1>
           )}
           <div className="flex sm:justify-start justify-center font-medium">
             {/* <div className="flex items-center mr-3 text-xs">

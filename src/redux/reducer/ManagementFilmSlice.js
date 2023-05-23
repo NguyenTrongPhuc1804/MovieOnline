@@ -4,6 +4,7 @@ import requestMovie from "../../services/servicesReques";
 const initialState = {
   count: 1,
   homeFilm: [],
+  PhimLe: [],
 };
 
 const ManagementFilmSlice = createSlice({
@@ -14,9 +15,10 @@ const ManagementFilmSlice = createSlice({
     builder.addCase(getFilmHomePage.fulfilled, (state, action) => {
       state.homeFilm = action.payload;
     });
-    builder.addCase(getFilmInfo.fulfilled, (state, action) => {
-      state.listArrayFilmNewUpdate.push(action.payload);
-    });
+    // builder.addCase(getPhimLe.fulfilled, (state, action) => {
+    //   // state.PhimLe = action.payload;
+    //   console.log(state.PhimLe);
+    // });
   },
 });
 export const getFilmHomePage = createAsyncThunk(
@@ -36,19 +38,15 @@ export const getFilmHomePage = createAsyncThunk(
   }
 );
 
-export const getFilmInfo = createAsyncThunk(
-  "film/getFilmInfo",
-  async (slug) => {
-    try {
-      const data = await requestMovie.get(`/phim/${slug}`);
+// export const getPhimLe = createAsyncThunk("film/getPhimLe", async (slug) => {
+//   try {
+//     const data = await requestMovie.get(`/v1/api/danh-sach/phim-le`);
 
-      console.log(data);
-      return data;
-    } catch (err) {
-      console.log(err);
-    }
-  }
-);
+//     return data;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
 export const { setCount } = ManagementFilmSlice.actions;
 
 export default ManagementFilmSlice.reducer;
