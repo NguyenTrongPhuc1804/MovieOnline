@@ -7,15 +7,16 @@ import ReactHtmlParser from "react-html-parser";
 
 function DetailFiml() {
   const { name } = useParams();
+
   const dispatch = useDispatch();
 
   const { detailFilm } = useSelector((state) => state.DetailFilm);
-  console.log(detailFilm);
 
   const videoId = detailFilm?.movie?.trailer_url.split("v=")[1];
   console.log(videoId);
   useEffect(() => {
     dispatch(getDetailFilm(name));
+
     window.scrollTo(0, 0);
   }, []);
   return (
