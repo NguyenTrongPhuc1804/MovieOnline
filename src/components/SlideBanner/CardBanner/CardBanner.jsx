@@ -25,7 +25,8 @@ function CardBanner(props) {
   }, [film?.content]);
   return (
     <>
-      <div className="wrapper relative cursor-pointer   transition-all sm:h-[80vh] h-[51vh] group overflow-hidden h-full">
+      <div className="wrapper  relative cursor-pointer   transition-all sm:h-[80vh] h-[51vh] group overflow-hidden h-full">
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-800 "></div>
         <button className="text-5xl  z-10 group-hover:block hidden transition-all absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
           <i className="fa-solid fa-play  bg-black bg-opacity-70 hover:bg-yellow-500 hover:bg-opacity-50 transition-colors  py-5 px-7 rounded-full text-white"></i>
         </button>
@@ -36,7 +37,7 @@ function CardBanner(props) {
           // srcSet="https://img.ophim1.com/uploads/movies/2359-thumb.jpg"
           alt=""
         />
-        <motion.div className="bg-black rounded-lg bg-opacity-40 absolute px-10 py-10 z-10 sm:w-[40%] top-1/2 transform  -translate-y-1/2  p-[3%]  text-white   bg-opacity-70 w-full ">
+        <motion.div className="  absolute px-10 py-10 z-10 sm:w-[40%] top-1/2 transform  -translate-y-1/2  p-[3%]  text-white    w-full ">
           {film?.name?.length > 50 ? (
             <motion.h1
               whileInView={({ x: [-100, 0] }, { opacity: 0 })}

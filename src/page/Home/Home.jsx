@@ -17,16 +17,16 @@ function Home() {
   const PhimLe = useSelector((state) => state.ManagementFilmSlice.PhimLe);
   const PhimBo = useSelector((state) => state.ManagementFilmSlice.PhimBo);
   const HoatHinh = useSelector((state) => state.ManagementFilmSlice.HoatHinh);
-  console.log(PhimLe);
   useEffect(() => {
     dispatch(getFilmHomePage());
     dispatch(getPhimLe());
     dispatch(getPhimBo());
     dispatch(getPhimHoatHinh());
+    window.scrollTo(0, 0);
   }, []);
   return (
     <div>
-      <div className="mt-[5rem]">
+      <div className="sm:mt-[5rem] mt-[5rem] lg:mt-[6.3rem]">
         <SlideBanner listFilm={filmNew} gap={0} />
       </div>
       <SlideCard listFilm={PhimMoi.items} gap={0} />

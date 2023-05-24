@@ -1,22 +1,35 @@
 // import img from "../../assets/images/series/wanda.png";
+
+import { useNavigate } from "react-router-dom";
+
 // import imgBanner from "../../assets/images/black-banner.png";
 function Card(props) {
   const { film } = props;
+  const navigation = useNavigate();
   return (
     <>
-      <div className="wrapper  z-50 relative cursor-pointer  transition-all group overflow-hidden h-full">
+      <div
+        onClick={() => {
+          navigation(`/phim/${film.slug}`);
+        }}
+        className="wrapper  z-50 relative cursor-pointer  transition-all group overflow-hidden h-full"
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 "></div>
+
         <button className=" z-10 group-hover:block hidden transition-all absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
           <i className="fa-solid fa-play  bg-black bg-opacity-70 hover:bg-yellow-500 transition-colors  p-5 rounded-full text-white"></i>
         </button>
         <img
-          className="w-full h-[300px] sm:h-[500px] object-cover group-hover:scale-110 transition"
+          className="w-full sm:h-[300px] h-[250px] sm:h-[500px] object-cover group-hover:scale-110 transition-all"
           // src={film.thumb_url}
           src={`https://img.ophim1.com/uploads/movies/${film.thumb_url}`}
           alt=""
         />
-        <div className="absolute bottom-0 pb-6 bg-black p-[3%]  text-white  bg-opacity-70 w-full ">
-          <h1 className="text-xl line-clamp-1  mb-4 font-bold">{film.name}</h1>
-          <div className="sm:flex flex-col sm:justify-start justify-center font-medium">
+        <div className="absolute bottom-0 sm:pb-6  p-[3%]   text-white   w-full ">
+          <h1 className="text-xl line-clamp-1  sm:mb-4  mb-2 font-bold">
+            {film.name}
+          </h1>
+          <div className="sm:flex flex-none sm:justify-start justify-center font-medium">
             {/* <div className="flex items-center mr-3 text-xs">
               <i className="fa-solid fa-star mr-2 text-red-500"></i>
               <p>9.5</p>

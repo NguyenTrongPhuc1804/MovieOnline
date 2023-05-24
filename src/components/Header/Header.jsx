@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import logo from "../../assets/LogoCinema/cinema.png";
 
 function Header() {
@@ -15,10 +16,10 @@ function Header() {
           aria-label="Global"
         >
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
+            <NavLink to="/" href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img className="h-10 w-auto" src={logo} />
-            </a>
+            </NavLink>
           </div>
           <div className="flex lg:hidden">
             <button
@@ -432,10 +433,10 @@ function Header() {
           <div className="fixed inset-0 z-10 " />
           <div className="bg-[#121212]  fixed inset-y-0 right-0 z-10 w-full overflow-y-auto text-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5">
+              <NavLink to="/" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
                 <img className="h-8 w-auto" src={logo} />
-              </a>
+              </NavLink>
               <button
                 onClick={() => {
                   setState({ ...state, openMenuMobile: false });
@@ -490,10 +491,7 @@ function Header() {
                       } mt-2 space-y-2`}
                       id="disclosure-1"
                     >
-                      <a
-                        href="#"
-                        className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7  hover:bg-gray-50 hover:text-black"
-                      >
+                      <a className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7  hover:bg-gray-50 hover:text-black">
                         Analytics
                       </a>
                       <a
