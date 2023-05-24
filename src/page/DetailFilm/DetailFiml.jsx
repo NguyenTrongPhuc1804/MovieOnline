@@ -60,7 +60,7 @@ function DetailFiml() {
                   </h1>
                 </div>
                 <div className="grid sm:grid-cols-1 grid-cols-2">
-                  <div className="sm:flex flex-none mb-4">
+                  <div className="sm:flex flex-none sm:mb-4">
                     <div className="flex items-center mr-2 ">
                       <h3 className=" font-bold">Trạng thái :</h3>
                       <p className="ml-2  text-red-400">Full</p>
@@ -74,7 +74,7 @@ function DetailFiml() {
                       <p className="ml-2  text-red-400">Full</p>
                     </div>
                   </div>
-                  <div className="sm:flex flex-none mb-4">
+                  <div className="sm:flex flex-none sm:mb-4">
                     <div className="flex items-center mr-2 flex-wrap ">
                       <h3 className=" font-bold">Đạo diễn :</h3>
                       <p className="ml-2  text-red-400">Full</p>

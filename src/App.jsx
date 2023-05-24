@@ -8,7 +8,6 @@ import DetailFiml from "./page/DetailFilm/DetailFiml";
 function App() {
   return (
     <>
-      <Loading />
       <BrowserRouter>
         <Routes>
           <Route path="" element={<HomeThemePlate />}>
@@ -17,6 +16,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      {/* <Loading /> */}
     </>
   );
 }

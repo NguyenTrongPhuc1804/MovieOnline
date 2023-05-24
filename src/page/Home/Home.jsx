@@ -10,6 +10,7 @@ import {
   getPhimLe,
 } from "../../redux/reducer/ManagementFilmSlice";
 import CardBanner from "../../components/SlideBanner/CardBanner/CardBanner";
+import Loading from "../../components/Loading/Loading";
 function Home() {
   const dispatch = useDispatch();
   const filmNew = useSelector((state) => state.ManagementFilmSlice.homeFilm);
@@ -17,14 +18,18 @@ function Home() {
   const PhimLe = useSelector((state) => state.ManagementFilmSlice.PhimLe);
   const PhimBo = useSelector((state) => state.ManagementFilmSlice.PhimBo);
   const HoatHinh = useSelector((state) => state.ManagementFilmSlice.HoatHinh);
+  const loading = useSelector((state) => state.LoadingSlice.loadingState);
   useEffect(() => {
     dispatch(getFilmHomePage());
     dispatch(getPhimLe());
     dispatch(getPhimBo());
     dispatch(getPhimHoatHinh());
   }, []);
+
   return (
     <div>
+      <Loading />
+
       <div className="sm:mt-[5rem] mt-[5rem] lg:mt-[6.3rem]">
         <SlideBanner listFilm={filmNew} gap={0} />
       </div>
@@ -53,7 +58,7 @@ function Home() {
         </div>
       </div>
       <div className="mt-[80px]">
-        <CardBanner film={filmNew[0]} />
+        <CardBanner film={filmNew[1]} />
       </div>
       <div className="mt-[80px]">
         <div className="relative px-5 py-2 text-3xl font-bold my-5 text-white">
