@@ -18,7 +18,11 @@ function DetailFiml() {
     dispatch(getDetailFilm(name));
 
     window.scrollTo(0, 0);
+    return () => {
+      dispatch(getDetailFilm(name));
+    };
   }, []);
+
   return (
     <>
       <div className="w-full text-white">

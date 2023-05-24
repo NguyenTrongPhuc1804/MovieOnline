@@ -6,10 +6,6 @@ import Header from "../../components/Header/Header";
 function HomeThemePlate() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    window.addEventListener("beforeunload", (e) => {
-      e.preventDefault();
-      alert(`Detail`);
-    });
   }, []);
   return (
     <div className="bg-[#181616]">
