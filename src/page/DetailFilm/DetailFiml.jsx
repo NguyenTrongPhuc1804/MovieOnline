@@ -15,8 +15,8 @@ function DetailFiml() {
   const videoId = detailFilm?.movie?.trailer_url.split("v=")[1];
   console.log(videoId);
   useEffect(() => {
-    window.scrollTo(0, 0);
     dispatch(getDetailFilm(name));
+    window.scrollTo(0, 0);
   }, []);
   return (
     <>
