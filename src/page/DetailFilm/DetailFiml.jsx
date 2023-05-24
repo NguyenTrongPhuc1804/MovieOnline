@@ -13,7 +13,7 @@ function DetailFiml() {
   console.log(detailFilm);
 
   const videoId = detailFilm?.movie?.trailer_url.split("v=")[1];
-
+  console.log(videoId);
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(getDetailFilm(name));
@@ -31,7 +31,7 @@ function DetailFiml() {
         >
           <div className="absolute inset-0 flex justify-center mt-[50%] sm:mt-[10%] bg-gradient-to-t from-[#181616] ">
             <div className="grid grid-cols-12 sm:grid-cols-3 sm:w-[80%] h-fit w-full p-[7%]  ">
-              <div className="col-1 flex px-4 sm:block hidden ">
+              <div className="col-1 flex px-4 sm:block hidden w[350px] h-[400px] ">
                 <img
                   className="rounded-2xl "
                   src={detailFilm?.movie?.thumb_url}
@@ -105,12 +105,20 @@ function DetailFiml() {
       </div>
       <div className="bg-[#181616] text-white w-full px-[10%] pt-[10%]">
         <h3 className="text-3xl font-bold mb-5">International Trailer </h3>
-        <iframe
-          className="w-full "
-          height={600}
-          src={`https://www.youtube.com/embed/${videoId}`}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        ></iframe>
+        {!videoId ? (
+          <p className="text-xl font-extrabold">
+            Phim hiện không có trailer. Chúng tôi sẽ update trailer sớm nhất có
+            thể !!
+          </p>
+        ) : (
+          <iframe
+            className="w-full sm:h-[600px] h-[300px]"
+            // height={600}
+            src={`https://www.youtube.com/embed/${videoId}`}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          ></iframe>
+        )}
+
         <div className="">
           <SlideCard />
         </div>
