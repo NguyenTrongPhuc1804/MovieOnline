@@ -18,11 +18,11 @@ function Home() {
   const PhimBo = useSelector((state) => state.ManagementFilmSlice.PhimBo);
   const HoatHinh = useSelector((state) => state.ManagementFilmSlice.HoatHinh);
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(getFilmHomePage());
     dispatch(getPhimLe());
     dispatch(getPhimBo());
     dispatch(getPhimHoatHinh());
-    window.scrollTo(0, 0);
   }, []);
   return (
     <div>
