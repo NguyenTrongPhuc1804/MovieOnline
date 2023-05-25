@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { matchPath, useParams } from "react-router-dom";
 import SlideCard from "../../components/SlideCard/SlideCard";
-import { getDetailFilm } from "../../redux/reducer/DetailFilmSlice";
+import { getDetailFilm, getTheLoai } from "../../redux/reducer/DetailFilmSlice";
 import ReactHtmlParser from "react-html-parser";
+import Button from "../../components/Button/Button";
 
 function DetailFiml() {
   const { name } = useParams();
   const dispatch = useDispatch();
   const detailFilm = useSelector((state) => state.DetailFilm.detailFilm);
-  console.log(name);
+  const { listTheLoai } = useSelector((state) => state.DetailFilm);
   const videoId = detailFilm?.item?.trailer_url.split("v=")[1];
+  // console.log("1", detailFilm?.item?.category);
+
   useEffect(() => {
     dispatch(getDetailFilm(name));
-
+    dispatch(getTheLoai(localStorage.getItem("randomCategory")));
     window.scrollTo(0, 0);
   }, []);
 
@@ -28,9 +31,9 @@ function DetailFiml() {
             backgroundSize: "cover",
           }}
         >
-          <div className="absolute inset-0 flex justify-center mt-[50%] sm:mt-[10%] bg-gradient-to-t from-[#181616] ">
-            <div className="grid grid-cols-12 sm:grid-cols-3 sm:w-[80%] h-fit w-full p-[7%]  ">
-              <div className="col-1 flex px-4 sm:block hidden  h-[450px] ">
+          <div className="absolute inset-0 flex justify-center mt-[40%] sm:mt-[15%] bg-gradient-to-t from-[#181616] ">
+            <div className="grid grid-cols-12 sm:grid-cols-3 sm:w-[80%] h-fit w-full pl-[5%]  ">
+              <div className="col-1 flex px-4 sm:block hidden w-[350px] h-[450px] ">
                 <img
                   className="rounded-2xl w-full h-full "
                   src={`https://img.ophim1.com/uploads/movies/${detailFilm?.item?.thumb_url}`}
@@ -46,7 +49,7 @@ function DetailFiml() {
                     return (
                       <button
                         key={i}
-                        className="px-4 text-xs py-1 border-[2px] border-white rounded-full mr-2  mb-2"
+                        className="px-4 text-xs py-1 border-[2px] border-white font-bold hover:bg-white hover:text-red-600 transition-all  rounded-full mr-2  mb-2"
                       >
                         {item.name}
                       </button>
@@ -62,29 +65,39 @@ function DetailFiml() {
                   <div className="sm:flex flex-none sm:mb-4">
                     <div className="flex items-center mr-2 ">
                       <h3 className=" font-bold">Trạng thái :</h3>
-                      <p className="ml-2  text-red-400">Full</p>
+                      <p className="ml-2  font-bold text-red-500">Full</p>
                     </div>
                     <div className="flex items-center mr-2 ">
-                      <h3 className=" font-bold">Định dạng :</h3>
-                      <p className="ml-2  text-red-400">Full</p>
+                      <h3 className=" font-bold">Số tập :</h3>
+                      <p className="ml-2  font-bold text-red-500">
+                        {detailFilm?.item?.episode_current}
+                      </p>
                     </div>
                     <div className="flex items-center mr-2 ">
                       <h3 className=" font-bold">Năm sản xuất :</h3>
-                      <p className="ml-2  text-red-400">Full</p>
+                      <p className="ml-2  font-bold text-red-500">
+                        {detailFilm?.item?.year}
+                      </p>
                     </div>
                   </div>
                   <div className="sm:flex flex-none sm:mb-4">
                     <div className="flex items-center mr-2 flex-wrap ">
                       <h3 className=" font-bold">Đạo diễn :</h3>
-                      <p className="ml-2  text-red-400">Full</p>
+                      <p className="ml-2  font-bold text-red-500">
+                        {detailFilm?.item?.director[0].slice(0, 8)}...
+                      </p>
                     </div>
                     <div className="flex items-center mr-2 ">
                       <h3 className=" font-bold">Quốc gia :</h3>
-                      <p className="ml-2  text-red-400">Full</p>
+                      <p className="ml-2  font-bold text-red-500">
+                        {detailFilm?.item?.country[0].name}
+                      </p>
                     </div>
                     <div className="flex items-center mr-2 ">
                       <h3 className=" font-bold">Lượt xem :</h3>
-                      <p className="ml-2  text-red-400">Full</p>
+                      <p className="ml-2  font-bold text-red-500">
+                        {detailFilm?.item?.view}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -92,10 +105,18 @@ function DetailFiml() {
                 <div className="">
                   <div className="flex items-center flex-wrap ">
                     <h3 className=" font-bold">Diễn viên :</h3>
-                    <p className="ml-2  text-gray-400">Nguyễn Phúc</p>
-                    <p className="ml-2  text-gray-400">Nguyễn Phúc</p>
-                    <p className="ml-2  text-gray-400">Nguyễn Phúc</p>
+                    {detailFilm?.item?.actor.slice(0, 4).map((actor, i) => {
+                      return (
+                        <h5 key={i} className="ml-2 text-white">
+                          {actor}
+                        </h5>
+                      );
+                    })}
+                    ...
                   </div>
+                </div>
+                <div className="mt-[20px]">
+                  <Button text="xem ngay" />
                 </div>
               </div>
             </div>
@@ -118,8 +139,12 @@ function DetailFiml() {
           ></iframe>
         )}
 
-        <div className="">
-          <SlideCard />
+        <div className="mt-[80px]">
+          <div className="relative px-5 py-2 text-3xl font-bold my-5 text-white">
+            <div className="absolute top-0 left-0 w-[4px] h-full bg-red-700"></div>
+            <p>CÓ THỂ BẠN CŨNG MUỐN XEM</p>
+          </div>
+          <SlideCard listFilm={listTheLoai.items} gap={10} />
         </div>
       </div>
     </div>

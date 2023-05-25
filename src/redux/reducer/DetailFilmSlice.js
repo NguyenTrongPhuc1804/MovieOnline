@@ -4,6 +4,7 @@ import { display, hidden } from "./LoadingSlice";
 
 const initialState = {
   detailFilm: {},
+  listTheLoai: {},
 };
 
 export const DetailFilm = createSlice({
@@ -16,6 +17,9 @@ export const DetailFilm = createSlice({
     builder.addCase(getDetailFilm.fulfilled, (state, action) => {
       state.detailFilm = action.payload;
     });
+    builder.addCase(getTheLoai.fulfilled, (state, action) => {
+      state.listTheLoai = action.payload;
+    });
   },
 });
 export const getDetailFilm = createAsyncThunk(
@@ -24,6 +28,20 @@ export const getDetailFilm = createAsyncThunk(
     dispatch(display());
     try {
       const { data } = await requestMovie.get(`/v1/api/phim/${name}`);
+      dispatch(hidden());
+
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+export const getTheLoai = createAsyncThunk(
+  "film/getTheLoai",
+  async (category, { dispatch }) => {
+    dispatch(display());
+    try {
+      const { data } = await requestMovie.get(`/v1/api/the-loai/${category}`);
       dispatch(hidden());
 
       return data;

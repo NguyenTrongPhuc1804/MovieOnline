@@ -6,12 +6,14 @@ import { NavLink, useNavigate } from "react-router-dom";
 function Card(props) {
   const { film } = props;
   const navigation = useNavigate();
+  const random = Math.floor(Math.random() * film.category.length);
+  const randomCategory = film.category[random].slug;
   return (
     <>
       <div
         onClick={() => {
           navigation(`/phim/${film.slug}`);
-          localStorage.setItem("SLUS", film.slug);
+          localStorage.setItem("randomCategory", randomCategory);
         }}
         className="wrapper  z-50 relative cursor-pointer  transition-all group overflow-hidden h-full"
       >

@@ -3,7 +3,10 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import ReactHtmlParser from "react-html-parser";
 import Button from "../../Button/Button";
+import { useNavigate } from "react-router-dom";
 function CardBanner(props) {
+  const navigation = useNavigate();
+
   const [contents, setContent] = useState("");
   const { film } = props;
   function isDOM(str) {
@@ -25,7 +28,12 @@ function CardBanner(props) {
   }, [film?.content]);
   return (
     <>
-      <div className="wrapper  relative cursor-pointer   transition-all sm:h-[80vh] h-[51vh] group overflow-hidden h-full">
+      <div
+        onClick={() => {
+          navigation(`/phim/${film.slug}`);
+        }}
+        className="wrapper  relative cursor-pointer   transition-all sm:h-[80vh] h-[51vh] group overflow-hidden h-full"
+      >
         <div className="absolute inset-0 bg-gradient-to-r from-gray-800 "></div>
         <button className="text-5xl  z-10 group-hover:block hidden transition-all absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
           <i className="fa-solid fa-play  bg-black bg-opacity-70 hover:bg-yellow-500 hover:bg-opacity-50 transition-colors  py-5 px-7 rounded-full text-white"></i>
