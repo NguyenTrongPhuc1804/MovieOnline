@@ -28,8 +28,6 @@ function Home() {
 
   return (
     <div>
-      <Loading />
-
       <div className="sm:mt-[5rem] mt-[5rem] lg:mt-[6.3rem]">
         <SlideBanner listFilm={filmNew} gap={0} />
       </div>

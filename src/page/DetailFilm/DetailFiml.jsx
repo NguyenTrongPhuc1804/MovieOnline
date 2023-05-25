@@ -6,21 +6,16 @@ import { getDetailFilm } from "../../redux/reducer/DetailFilmSlice";
 import ReactHtmlParser from "react-html-parser";
 
 function DetailFiml() {
-  const { name } = useParams();
-
   const dispatch = useDispatch();
+  const { name } = useParams();
 
   const { detailFilm } = useSelector((state) => state.DetailFilm);
 
   const videoId = detailFilm?.movie?.trailer_url.split("v=")[1];
-  console.log(videoId);
   useEffect(() => {
     dispatch(getDetailFilm(name));
 
     window.scrollTo(0, 0);
-    return () => {
-      dispatch(getDetailFilm(name));
-    };
   }, []);
 
   return (
@@ -36,14 +31,14 @@ function DetailFiml() {
         >
           <div className="absolute inset-0 flex justify-center mt-[50%] sm:mt-[10%] bg-gradient-to-t from-[#181616] ">
             <div className="grid grid-cols-12 sm:grid-cols-3 sm:w-[80%] h-fit w-full p-[7%]  ">
-              <div className="col-1 flex px-4 sm:block hidden w[350px] h-[400px] ">
+              <div className="col-1 flex px-4 sm:block hidden w[300px] h-[450px] ">
                 <img
-                  className="rounded-2xl "
+                  className="rounded-2xl w-full h-full "
                   src={detailFilm?.movie?.thumb_url}
                   alt=""
                 />
               </div>
-              <div className="sm:col-span-2 col-span-full text-white  ">
+              <div className="sm:col-span-2 col-span-full text-white ">
                 <h1 className="sm:text-4xl text-3xl font-bold">
                   {detailFilm?.movie?.name}
                 </h1>

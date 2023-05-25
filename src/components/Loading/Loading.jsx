@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import loading from "../../assets/Loading/loading.gif";
+import loading from "../../assets/Loading/loading1.gif";
 function Loading() {
   const { loadingState } = useSelector((state) => state.LoadingSlice);
   if (loadingState) {

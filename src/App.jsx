@@ -8,15 +8,18 @@ import DetailFiml from "./page/DetailFilm/DetailFiml";
 function App() {
   return (
     <>
+      <Loading />
+
       <BrowserRouter>
         <Routes>
           <Route path="" element={<HomeThemePlate />}>
             <Route path="/" element={<Home />} />
+          </Route>
+          <Route path="" element={<HomeThemePlate />}>
             <Route path="/phim/:name" element={<DetailFiml />} />
           </Route>
         </Routes>
       </BrowserRouter>
-      {/* <Loading /> */}
     </>
   );
 }
