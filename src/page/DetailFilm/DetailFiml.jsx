@@ -9,7 +9,7 @@ function DetailFiml() {
   const dispatch = useDispatch();
   const { name } = useParams();
 
-  const { detailFilm } = useSelector((state) => state.DetailFilm);
+  const detailFilm = useSelector((state) => state.DetailFilm.detailFilm);
 
   const videoId = detailFilm?.movie?.trailer_url.split("v=")[1];
   useEffect(() => {
