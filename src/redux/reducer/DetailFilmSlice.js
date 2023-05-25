@@ -23,7 +23,7 @@ export const getDetailFilm = createAsyncThunk(
   async (name, { dispatch }) => {
     dispatch(display());
     try {
-      const data = await requestMovie.get(`/phim/${name}`);
+      const { data } = await requestMovie.get(`/v1/api/phim/${name}`);
       dispatch(hidden());
 
       return data;

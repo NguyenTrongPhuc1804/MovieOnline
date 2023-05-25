@@ -10,8 +10,8 @@ function DetailFiml() {
   const { name } = useParams();
 
   const detailFilm = useSelector((state) => state.DetailFilm.detailFilm);
-
-  const videoId = detailFilm?.movie?.trailer_url.split("v=")[1];
+  console.log(detailFilm);
+  const videoId = detailFilm?.item?.trailer_url.split("v=")[1];
   useEffect(() => {
     dispatch(getDetailFilm(name));
 
@@ -19,31 +19,31 @@ function DetailFiml() {
   }, []);
 
   return (
-    <>
+    <div className="">
       <div className="w-full text-white">
         <div
           className="h-[80vh] w-full relative "
           style={{
-            backgroundImage: `url("${detailFilm?.movie?.poster_url}")`,
+            backgroundImage: `url("https://img.ophim1.com/uploads/movies/${detailFilm?.item?.poster_url}")`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
           }}
         >
           <div className="absolute inset-0 flex justify-center mt-[50%] sm:mt-[10%] bg-gradient-to-t from-[#181616] ">
             <div className="grid grid-cols-12 sm:grid-cols-3 sm:w-[80%] h-fit w-full p-[7%]  ">
-              <div className="col-1 flex px-4 sm:block hidden w[300px] h-[450px] ">
+              <div className="col-1 flex px-4 sm:block hidden  h-[450px] ">
                 <img
                   className="rounded-2xl w-full h-full "
-                  src={detailFilm?.movie?.thumb_url}
+                  src={`https://img.ophim1.com/uploads/movies/${detailFilm?.item?.thumb_url}`}
                   alt=""
                 />
               </div>
               <div className="sm:col-span-2 col-span-full text-white ">
                 <h1 className="sm:text-4xl text-3xl font-bold">
-                  {detailFilm?.movie?.name}
+                  {detailFilm?.item?.name}
                 </h1>
                 <div className="flex-wrap my-5 ">
-                  {detailFilm?.movie?.category.map((item, i) => {
+                  {detailFilm?.item?.category.map((item, i) => {
                     return (
                       <button
                         key={i}
@@ -56,7 +56,7 @@ function DetailFiml() {
                 </div>
                 <div className="mb-4 line-clamp-4 sm:line-clamp-6  ">
                   <h1 className="">
-                    {ReactHtmlParser(detailFilm?.movie?.content)}
+                    {ReactHtmlParser(detailFilm?.item?.content)}
                   </h1>
                 </div>
                 <div className="grid sm:grid-cols-1 grid-cols-2">
@@ -123,7 +123,7 @@ function DetailFiml() {
           <SlideCard />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

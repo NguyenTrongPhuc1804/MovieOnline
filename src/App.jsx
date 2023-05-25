@@ -14,8 +14,8 @@ function App() {
         <Routes>
           <Route path="" element={<HomeThemePlate />}>
             <Route path="/" element={<Home />} />
+            <Route path="/phim/:name" element={<DetailFiml />} />
           </Route>
-          <Route path="/phim/:name" element={<DetailFiml />} />
         </Routes>
       </BrowserRouter>
     </>
