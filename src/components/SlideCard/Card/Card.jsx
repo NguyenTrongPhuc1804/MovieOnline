@@ -1,6 +1,6 @@
 // import img from "../../assets/images/series/wanda.png";
 
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 // import imgBanner from "../../assets/images/black-banner.png";
 function Card(props) {
@@ -8,10 +8,11 @@ function Card(props) {
   const navigation = useNavigate();
   return (
     <>
-      <div
-        onClick={() => {
-          navigation(`/phim/${film.slug}`);
-        }}
+      <NavLink
+        to={`/phim/${film.slug}`}
+        // onClick={() => {
+        //   navigation();
+        // }}
         className="wrapper  z-50 relative cursor-pointer  transition-all group overflow-hidden h-full"
       >
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900 "></div>
@@ -56,7 +57,7 @@ function Card(props) {
             )}
           </div>
         </div>
-      </div>
+      </NavLink>
     </>
   );
 }
