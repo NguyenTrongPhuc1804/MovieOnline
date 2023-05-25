@@ -9,7 +9,7 @@ function Card(props) {
   return (
     <>
       <NavLink
-        to={`/phim/${film.slug}`}
+        to={`/${film.slug}`}
         // onClick={() => {
         //   navigation();
         // }}
