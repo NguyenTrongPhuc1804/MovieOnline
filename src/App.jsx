@@ -12,10 +12,8 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route path="" element={<HomeThemePlate />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/:name" element={<DetailFiml />} />
-          </Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/:name" element={<DetailFiml />} />
         </Routes>
       </BrowserRouter>
     </>
