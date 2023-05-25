@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import SlideCard from "../../components/SlideCard/SlideCard";
@@ -6,14 +6,15 @@ import { getDetailFilm } from "../../redux/reducer/DetailFilmSlice";
 import ReactHtmlParser from "react-html-parser";
 
 function DetailFiml() {
-  const dispatch = useDispatch();
   const { name } = useParams();
+  const [nameFilm, setNameFilm] = useState(name);
+  const dispatch = useDispatch();
 
   const detailFilm = useSelector((state) => state.DetailFilm.detailFilm);
   console.log(detailFilm);
   const videoId = detailFilm?.item?.trailer_url.split("v=")[1];
   useEffect(() => {
-    dispatch(getDetailFilm(name));
+    dispatch(getDetailFilm(nameFilm));
 
     window.scrollTo(0, 0);
   }, []);
