@@ -18,7 +18,7 @@ function Header() {
           <div className="flex lg:flex-1">
             <NavLink to="/" href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img className="h-10 w-auto" src={logo} />
+              <img className="h-10 w-[100px]" src={logo} />
             </NavLink>
           </div>
           <div className="flex lg:hidden">
