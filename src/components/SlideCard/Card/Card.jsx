@@ -8,11 +8,11 @@ function Card(props) {
   const navigation = useNavigate();
   return (
     <>
-      <NavLink
-        to={`/${film.slug}`}
-        // onClick={() => {
-        //   navigation();
-        // }}
+      <div
+        onClick={() => {
+          navigation(`/phim/${film.slug}`);
+          localStorage.setItem("SLUS", film.slug);
+        }}
         className="wrapper  z-50 relative cursor-pointer  transition-all group overflow-hidden h-full"
       >
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900 "></div>
@@ -57,7 +57,7 @@ function Card(props) {
             )}
           </div>
         </div>
-      </NavLink>
+      </div>
     </>
   );
 }
