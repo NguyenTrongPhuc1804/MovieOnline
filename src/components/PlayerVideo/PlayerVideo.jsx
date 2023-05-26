@@ -21,15 +21,13 @@ function PlayerVideo() {
   );
   const [changeServe, setChangeServe] = useState(0);
 
-  console.log(detailFilm?.item?.episodes[0].server_data[0].link_embed);
+  //   console.log(detailFilm?.item?.episodes[0].server_data[0].link_embed);
   //   console.log(name);
   useEffect(() => {
     dispatch(getDetailFilm(name));
     dispatch(getTheLoai(localStorage.getItem("randomCategory")));
     dispatch(getFilmHomePage());
   }, []);
-  const text =
-    "Họ không sợ khó khăn, dũng cảm và quyết tâm không bỏ cuộc trong việc theo đuổi mục tiêu của mình. Cùng nhau, họ trải qua những thăng trầm, đồng hành và cống hiến cho nhau để đạt tới đỉnh cao thành công. Sự kiên trì và sự đồng lòng giữa hai người giúp họ vượt qua mọi trở ngại và vươn tới những giấc mơ mà họ mong đợiHọ không sợ khó khăn, dũng cảm và quyết tâm không bỏ cuộc trong việc theo đuổi mục tiêu của mình. Cùng nhau, họ trải qua những thăng trầm, đồng hành và cống hiến cho nhau để đạt tới đỉnh cao thành công. Sự kiên trì và sự đồng lòng giữa hai người giúp họ vượt qua mọi trở ngại và vươn tới những giấc mơ mà họ mong đợiHọ không sợ khó khăn, dũng cảm và quyết tâm không bỏ cuộc trong việc theo đuổi mục tiêu của mình. Cùng nhau, họ trải qua những thăng trầm, đồng hành và cống hiến cho nhau để đạt tới đỉnh cao thành công. Sự kiên trì và sự đồng lòng giữa hai người giúp họ vượt qua mọi trở ngại và vươn tới những giấc mơ mà họ mong đợi";
   return (
     <div className="bg-[#181616]  text-white pt-[1%]">
       <div className=" w-full">
@@ -72,9 +70,9 @@ function PlayerVideo() {
                   }}
                   className={` mr-2 my-2 text-xs border-[2px] border-red-700 rounded-md z-20  text-white font-bold px-3 py-1  after:transition-all group  after:hover:translate-x-0 overflow-hidden relative after:content-[''] after:w-full after:h-full ${
                     episode === link.link_embed
-                      ? " sm:after:translate-x-[0%]"
-                      : " sm:after:translate-x-[-100%]"
-                  }  after:absolute after:top-0 after:left-0 after:bg-red-600 after:-z-10`}
+                      ? " sm:after:translate-x-[0%] after:bg-red-600 "
+                      : " sm:after:translate-x-[-100%] after:bg-none "
+                  }  after:absolute after:top-0 after:left-0 after:-z-10`}
                 >
                   Tập {link.name}
                 </button>

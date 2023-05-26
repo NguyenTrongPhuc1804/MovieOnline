@@ -19,7 +19,7 @@ function CardPricing() {
         </p>
       </div>
       <div className="text-center">
-        <Button text="Register now"></Button>
+        <Button color="after:bg-red-700" text="Register now"></Button>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import ReactHtmlParser from "react-html-parser";
 import Button from "../../Button/Button";
 import { useNavigate } from "react-router-dom";
 function CardBanner(props) {
-  const navigation = useNavigate();
+  const navigate = useNavigate();
 
   const [contents, setContent] = useState("");
   const { film } = props;
@@ -30,7 +30,7 @@ function CardBanner(props) {
     <>
       <div
         onClick={() => {
-          navigation(`/phim/${film.slug}`);
+          navigate(`/phim/${film.slug}`);
         }}
         className="wrapper  relative cursor-pointer   transition-all sm:h-[80vh] h-[51vh] group overflow-hidden h-full"
       >
@@ -86,8 +86,15 @@ function CardBanner(props) {
                 {contents}
               </div>
             )}
-
-            <Button color="after:bg-red-700" text="xem ngay" />
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(`/phim/xem/${film.slug}`);
+              }}
+              className=""
+            >
+              <Button color="after:bg-red-700" text="xem ngay" />
+            </div>
           </motion.div>
         </motion.div>
       </div>
