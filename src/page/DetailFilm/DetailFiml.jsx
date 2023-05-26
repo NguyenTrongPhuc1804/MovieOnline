@@ -122,10 +122,10 @@ function DetailFiml() {
                     }}
                     className="mr-2"
                   >
-                    <Button color={"b91c1c"} text="xem ngay" />
+                    <Button color="after:bg-[#b91c1c]" text="xem ngay" />
                   </div>
                   <Link to="section1" smooth={true}>
-                    <Button color={"537188"} text="trailer" />
+                    <Button color="after:bg-[#537188]" text="trailer" />
                   </Link>
                 </div>
               </div>
