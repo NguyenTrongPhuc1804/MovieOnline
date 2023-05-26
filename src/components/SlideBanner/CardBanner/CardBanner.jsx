@@ -87,7 +87,7 @@ function CardBanner(props) {
               </div>
             )}
 
-            <Button text="xem ngay" />
+            <Button color="after:bg-red-700" text="xem ngay" />
           </motion.div>
         </motion.div>
       </div>

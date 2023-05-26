@@ -53,7 +53,7 @@ function PlayerVideo() {
                 }}
                 className=" mr-2"
               >
-                <Button text={server.server_name} color="537188" />
+                <Button text={server.server_name} color=" after:bg-[#537188]" />
               </div>
             );
           })}
