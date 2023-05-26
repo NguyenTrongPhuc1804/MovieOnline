@@ -14,6 +14,7 @@ function Card(props) {
         onClick={() => {
           navigation(`/phim/${film.slug}`);
           localStorage.setItem("randomCategory", randomCategory);
+          console.log(film.slug);
         }}
         className="wrapper  z-50 relative cursor-pointer  transition-all group overflow-hidden h-full"
       >

@@ -46,23 +46,13 @@ function CardBanner(props) {
           alt=""
         />
         <motion.div className="  absolute px-10 py-10 z-10 sm:w-[40%] top-1/2 transform  -translate-y-1/2  p-[3%]  text-white    w-full ">
-          {film?.name?.length > 50 ? (
-            <motion.h1
-              whileInView={({ x: [-100, 0] }, { opacity: 0 })}
-              transition={{ ease: "easeOut", duration: 2 }}
-              className="sm:text-4xl  text-2xl mb-5 font-bold"
-            >
-              {film?.name.slice(0, 50)}.
-            </motion.h1>
-          ) : (
-            <motion.h1
-              whileInView={{ x: [-100, 0], opacity: [0, 1] }}
-              transition={{ ease: "easeOut", duration: 2 }}
-              className="sm:text-4xl   text-2xl mb-5 font-bold"
-            >
-              {film?.name}
-            </motion.h1>
-          )}
+          <motion.h1
+            whileInView={{ x: [-100, 0], opacity: [0, 1] }}
+            transition={{ ease: "easeOut", duration: 2 }}
+            className="sm:text-4xl truncate  text-2xl mb-5 font-bold"
+          >
+            {film?.name}
+          </motion.h1>
 
           <motion.div
             whileInView={{ x: [-100, 0], opacity: [0, 1] }}

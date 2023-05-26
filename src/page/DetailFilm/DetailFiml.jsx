@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { matchPath, useParams } from "react-router-dom";
+import { matchPath, useNavigate, useParams } from "react-router-dom";
 import SlideCard from "../../components/SlideCard/SlideCard";
 import { getDetailFilm, getTheLoai } from "../../redux/reducer/DetailFilmSlice";
 import ReactHtmlParser from "react-html-parser";
 import Button from "../../components/Button/Button";
-
+import { Link, Element } from "react-scroll";
 function DetailFiml() {
+  const navigate = useNavigate();
   const { name } = useParams();
   const dispatch = useDispatch();
   const detailFilm = useSelector((state) => state.DetailFilm.detailFilm);
   const { listTheLoai } = useSelector((state) => state.DetailFilm);
   const videoId = detailFilm?.item?.trailer_url.split("v=")[1];
-  // console.log("1", detailFilm?.item?.category);
 
   useEffect(() => {
     dispatch(getDetailFilm(name));
     dispatch(getTheLoai(localStorage.getItem("randomCategory")));
     window.scrollTo(0, 0);
-  }, []);
+  }, [name]);
 
   return (
     <div className="">
@@ -31,7 +31,7 @@ function DetailFiml() {
             backgroundSize: "cover",
           }}
         >
-          <div className="absolute inset-0 flex justify-center mt-[40%] sm:mt-[15%] bg-gradient-to-t from-[#181616] ">
+          <div className="absolute inset-0 flex justify-center mt-[50%] sm:mt-[15%] bg-gradient-to-t from-[#181616] ">
             <div className="grid grid-cols-12 sm:grid-cols-3 sm:w-[80%] h-fit w-full pl-[5%]  ">
               <div className="col-1 flex px-4 sm:block hidden w-[350px] h-[450px] ">
                 <img
@@ -115,19 +115,32 @@ function DetailFiml() {
                     ...
                   </div>
                 </div>
-                <div className="mt-[20px]">
-                  <Button text="xem ngay" />
+                <div className="mt-[20px] flex">
+                  <div
+                    onClick={() => {
+                      navigate(`/phim/xem/${detailFilm?.item?.slug}`);
+                    }}
+                    className="mr-2"
+                  >
+                    <Button color={"b91c1c"} text="xem ngay" />
+                  </div>
+                  <Link to="section1" smooth={true}>
+                    <Button color={"537188"} text="trailer" />
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="bg-[#181616] text-white w-full px-[10%] pt-[10%]">
+      <Element
+        name="section1"
+        className="bg-[#181616] text-white w-full px-[10%] pt-[10%] "
+      >
         <h3 className="text-3xl font-bold mb-5">International Trailer </h3>
         {!videoId ? (
           <p className="text-xl font-extrabold">
-            Phim hiện không có trailer. Chúng tôi sẽ update trailer sớm nhất có
+            Phim hiện không có trailer. Chúng tôi sẽ thêm trailer sớm nhất có
             thể !!
           </p>
         ) : (
@@ -146,7 +159,7 @@ function DetailFiml() {
           </div>
           <SlideCard listFilm={listTheLoai.items} gap={10} />
         </div>
-      </div>
+      </Element>
     </div>
   );
 }
