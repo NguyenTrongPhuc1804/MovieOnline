@@ -1,21 +1,38 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../../components/SlideCard/Card/Card";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 import {
   getFilmHomePage,
   getPhimLe,
 } from "../../redux/reducer/ManagementFilmSlice";
 
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 function AllFilmByCategory() {
   //get data list new film
   const dispatch = useDispatch();
   const PhimMoi = useSelector((state) => state.ManagementFilmSlice.PhimMoi);
   const PhimLe = useSelector((state) => state.ManagementFilmSlice.PhimLe);
-
-  console.log(PhimMoi.items);
+  console.log(PhimLe);
+  const darkTheme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
+  const totalPage = Math.floor(
+    PhimLe?.params?.pagination?.totalItems /
+      PhimLe?.params?.pagination?.totalItemsPerPage
+  );
+  console.log(totalPage);
+  const handleChange = (event, value) => {
+    console.log(value);
+    dispatch(getPhimLe(value));
+    window.scrollTo(0, 0);
+  };
   useEffect(() => {
     dispatch(getFilmHomePage());
-    dispatch(getPhimLe());
+    dispatch(getPhimLe(1));
   }, []);
   return (
     <div className="sm:px-[8%] px-[2%] sm:mt-[5rem] mt-[5rem] lg:mt-[6.3rem] ">
@@ -31,6 +48,22 @@ function AllFilmByCategory() {
             <Card film={item} />
           </div>
         ))}
+      </div>
+      <div className="flex justify-center mt-[2%]">
+        <ThemeProvider theme={darkTheme}>
+          <Stack spacing={2}>
+            <Pagination
+              onChange={handleChange}
+              defaultPage={1}
+              color="secondary"
+              shape="rounded"
+              count={totalPage}
+              showFirstButton
+              showLastButton
+              variant="outlined"
+            />
+          </Stack>
+        </ThemeProvider>
       </div>
     </div>
   );

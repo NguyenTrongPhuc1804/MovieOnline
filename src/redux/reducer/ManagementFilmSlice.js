@@ -21,6 +21,7 @@ const ManagementFilmSlice = createSlice({
       state.PhimMoi = action.payload.data;
     });
     builder.addCase(getPhimLe.fulfilled, (state, action) => {
+      console.log(action);
       state.PhimLe = action.payload;
     });
     builder.addCase(getPhimBo.fulfilled, (state, action) => {
@@ -53,10 +54,13 @@ export const getFilmHomePage = createAsyncThunk(
 export const getPhimLe = createAsyncThunk(
   "film/getPhimLe",
   async (page = "", { dispatch }) => {
+    dispatch(display());
+
     try {
       const { data } = await requestMovie.get(
         `/v1/api/danh-sach/phim-le?page=${page}`
       );
+      dispatch(hidden());
 
       return data;
     } catch (err) {
