@@ -39,11 +39,12 @@ function Card(props) {
               <p>9.5</p>
             </div> */}
             <div className="flex items-center mr-3 text-xs sm:text-sm">
-              <i className="fa-solid fa-clock mr-2 text-red-500 sm:block hidden"></i>
+              <i className="fa-solid fa-clock mr-2 text-red-500 "></i>
               <p>{film.time}</p>
             </div>
             {film.type === "single" ? (
               <div className="flex items-center mr-3 text-xs sm:text-sm">
+                <i className="fa-solid fa-film mr-2 text-red-500"></i>
                 <p className=" mr-2">{film.quality}</p>
                 <p>{film.lang}+</p>
               </div>
@@ -55,6 +56,8 @@ function Card(props) {
               ""
             ) : (
               <div className="flex items-center mr-3 text-xs sm:text-sm">
+                <i className="fa-solid fa-film mr-2 text-red-500"></i>
+
                 <p>{film.episode_current}</p>
               </div>
             )}

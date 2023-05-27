@@ -1,4 +1,3 @@
-import { calcLength } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -32,53 +31,60 @@ function PlayerVideo() {
     <div className="bg-[#181616]  text-white pt-[1%]">
       <div className=" w-full">
         <iframe
-          className="sm:h-[80vh] h-[30vh] w-full sm:w-[80%] m-auto sm:mt-[5rem] mt-[5rem] lg:mt-[6.3rem]"
+          className="sm:h-[62vh] h-[30vh] w-full sm:w-[80%] m-auto sm:mt-[5rem] mt-[5rem] lg:mt-[6.3rem]"
           title="video player"
           src={episode}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen={true}
         />
       </div>
-      <div className="w-fit m-auto  p-3 border-[1px]  border-white mt-[3%]">
-        <div className="text-xs sm:text-lg font-bold ">Server :</div>
-        <div className="flex">
-          {detailFilm?.item?.episodes.map((server, i) => {
-            return (
-              <div
-                key={i}
-                onClick={() => {
-                  setChangeServe(Number(server.server_name.slice(-1)) - 1);
-                }}
-                className=" mr-2"
-              >
-                <Button text={server.server_name} color=" after:bg-[#537188]" />
-              </div>
-            );
-          })}
-        </div>
-        <h1 className="text-xs sm:text-lg font-bold mt-3">
-          Danh sách tập phim :{" "}
-        </h1>
-        <div className="flex-wrap  text-center">
-          {detailFilm?.item?.episodes[changeServe]?.server_data.map(
-            (link, i) => {
+      <div className="w-fit m-auto  p-3 border-[1px]  border-white mt-[3%] flex">
+        <div className="">
+          <div className="text-xs sm:text-lg font-bold ">Server :</div>
+          <div className="flex-wrap ">
+            {detailFilm?.item?.episodes.map((server, i) => {
               return (
-                <button
+                <div
                   key={i}
                   onClick={() => {
-                    setEpisode(link.link_embed);
+                    setChangeServe(Number(server.server_name.slice(-1)) - 1);
                   }}
-                  className={` mr-2 my-2 text-xs border-[2px] border-red-700 rounded-md z-20  text-white font-bold px-3 py-1  after:transition-all group  after:hover:translate-x-0 overflow-hidden relative after:content-[''] after:w-full after:h-full ${
-                    episode === link.link_embed
-                      ? " sm:after:translate-x-[0%] after:bg-red-600 "
-                      : " sm:after:translate-x-[-100%] after:bg-none "
-                  }  after:absolute after:top-0 after:left-0 after:-z-10`}
+                  className=" mr-2 mb-2"
                 >
-                  Tập {link.name}
-                </button>
+                  <Button
+                    text={server.server_name}
+                    color=" after:bg-[#537188]"
+                  />
+                </div>
               );
-            }
-          )}
+            })}
+          </div>
+        </div>
+        <div className="">
+          <h1 className="text-xs sm:text-lg font-bold ">
+            Danh sách tập phim :{" "}
+          </h1>
+          <div className="flex-wrap  text-center">
+            {detailFilm?.item?.episodes[changeServe]?.server_data.map(
+              (link, i) => {
+                return (
+                  <button
+                    key={i}
+                    onClick={() => {
+                      setEpisode(link.link_embed);
+                    }}
+                    className={` mr-2 my-2 text-xs border-[2px] border-red-700 rounded-md z-20  text-white font-bold px-3 py-1  after:transition-all group  after:hover:translate-x-0 overflow-hidden relative after:content-[''] after:w-full after:h-full ${
+                      episode === link.link_embed
+                        ? " sm:after:translate-x-[0%] after:bg-red-600 "
+                        : " sm:after:translate-x-[-100%] after:bg-none "
+                    }  after:absolute after:top-0 after:left-0 after:-z-10`}
+                  >
+                    Tập {link.name}
+                  </button>
+                );
+              }
+            )}
+          </div>
         </div>
       </div>
       <div className="mt-[2%] px-[10%]">
@@ -88,7 +94,9 @@ function PlayerVideo() {
             <p>{detailFilm?.item?.name}</p>
           </div>
         </div>
-        <h3 className="text-lg font-bold">{detailFilm?.item?.origin_name}</h3>
+        <h3 className="text-lg font-bold text-red-700">
+          {detailFilm?.item?.origin_name}
+        </h3>
         <div className="mt-[20px] p-5 border-[1px] border-gray-500">
           <h3 className="text-lg font-bold">Nội dung phim :</h3>
           <h5 className="text-base ">
@@ -110,7 +118,7 @@ function PlayerVideo() {
             )}
           </h5>
           <div className="mt-[20px]">
-            <div className="mb-2">Tags</div>
+            <div className="mb-2 font-bold">Tags</div>
             {detailFilm?.item?.category.map((category, i) => (
               <button
                 key={i}
