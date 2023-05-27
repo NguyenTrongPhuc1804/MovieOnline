@@ -23,6 +23,7 @@ function PlayerVideo() {
   //   console.log(detailFilm?.item?.episodes[0].server_data[0].link_embed);
   //   console.log(name);
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(getDetailFilm(name));
     dispatch(getTheLoai(localStorage.getItem("randomCategory")));
     dispatch(getFilmHomePage());
