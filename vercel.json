@@ -2,6 +2,7 @@
   "rewrites": [
     {
       "source": "/phim/:path*",
+      "source": "/list",
       "destination": "/index.html"
     }
   ]
