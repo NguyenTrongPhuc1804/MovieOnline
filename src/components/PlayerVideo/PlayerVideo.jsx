@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDetailFilm, getTheLoai } from "../../redux/reducer/DetailFilmSlice";
 import { getFilmHomePage } from "../../redux/reducer/ManagementFilmSlice";
+import HtmlParser from "react-html-parser";
 import Button from "../Button/Button";
 import SlideCard from "../SlideCard/SlideCard";
 
@@ -102,8 +103,8 @@ function PlayerVideo() {
           <h3 className="text-lg font-bold">Nội dung phim :</h3>
           <h5 className="text-base ">
             {!seeMore
-              ? detailFilm?.item?.content.slice(0, 150)
-              : detailFilm?.item?.content}
+              ? HtmlParser(detailFilm?.item?.content.slice(0, 150))
+              : HtmlParser(detailFilm?.item?.content)}
 
             {!seeMore ? (
               <span
