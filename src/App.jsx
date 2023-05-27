@@ -14,11 +14,11 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route path="" element={<HomeThemePlate />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/list" element={<AllFilmByCategory />} />
-            <Route path="/phim/:name" element={<DetailFiml />} />
-            <Route path="/phim/xem/:name" element={<PlayerVideo />} />
+          <Route path="/" element={<HomeThemePlate />}>
+            <Route path="" element={<Home />} />
+            <Route path="list" element={<AllFilmByCategory />} />
+            <Route path="phim/:name" element={<DetailFiml />} />
+            <Route path="phim/xem/:name" element={<PlayerVideo />} />
           </Route>
         </Routes>
       </BrowserRouter>

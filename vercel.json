@@ -1,8 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/phim/:path*",
-      "source": "/list",
+      "source": "phim/:path*",
       "destination": "/index.html"
     }
   ]
