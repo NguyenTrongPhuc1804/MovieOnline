@@ -13,7 +13,6 @@ function DetailFiml() {
   const detailFilm = useSelector((state) => state.DetailFilm.detailFilm);
   const { listTheLoai } = useSelector((state) => state.DetailFilm);
   const videoId = detailFilm?.item?.trailer_url.split("v=")[1];
-  console.log(detailFilm);
   useEffect(() => {
     dispatch(getDetailFilm(name));
     dispatch(getTheLoai(localStorage.getItem("randomCategory")));
@@ -137,11 +136,11 @@ function DetailFiml() {
         name="section1"
         className="bg-[#181616] text-white w-full px-[10%] pt-[10%] "
       >
-        <h3 className="text-3xl font-bold mb-5">International Trailer </h3>
+        <h3 className="text-3xl font-bold mb-5">Trailer </h3>
         {!videoId ? (
           <p className="text-xl font-extrabold">
-            Phim hiện không có trailer. Chúng tôi sẽ thêm trailer sớm nhất có
-            thể !!
+            Phim hiện chưa có trailer. Chúng tôi sẽ thêm trailer sớm nhất có thể
+            !!
           </p>
         ) : (
           <iframe

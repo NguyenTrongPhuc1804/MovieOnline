@@ -87,7 +87,7 @@ function PlayerVideo() {
           </div>
         </div>
       </div>
-      <div className="mt-[2%] px-[10%]">
+      <div className="mt-[2%]  px-[5%] sm:px-[10%]">
         <div className="">
           <div className="relative  py-2 text-3xl font-bold mt-5 text-white">
             {/* <div className="absolute top-0 left-0 w-[4px] h-full bg-red-700"></div> */}

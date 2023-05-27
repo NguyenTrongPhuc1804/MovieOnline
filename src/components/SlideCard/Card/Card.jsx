@@ -12,9 +12,9 @@ function Card(props) {
     <>
       <div
         onClick={() => {
-          navigation(`/phim/${film.slug}`);
+          navigation(`/phim/${film?.slug}`);
           localStorage.setItem("randomCategory", randomCategory);
-          console.log(film.slug);
+          console.log(film?.slug);
         }}
         className="wrapper  z-50 relative cursor-pointer  transition-all group overflow-hidden h-full"
       >

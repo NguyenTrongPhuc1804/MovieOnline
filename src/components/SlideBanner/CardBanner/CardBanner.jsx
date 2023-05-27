@@ -26,7 +26,6 @@ function CardBanner(props) {
       }
     }
   }, [film?.content]);
-  console.log(film);
   return (
     <>
       <div
@@ -66,10 +65,10 @@ function CardBanner(props) {
             </div>
             <div className="flex items-center mr-3 text-xs">
               <i className="fa-solid fa-clock mr-2 text-red-500"></i>
-              <p>{film.time}</p>
+              <p>{film?.time}</p>
             </div>
             <div className="flex items-center mr-3 text-xs">
-              <p className=" mr-2">{film.quality}</p>
+              <p className=" mr-2">{film?.quality}</p>
               <p>16+</p>
             </div>
           </motion.div>
