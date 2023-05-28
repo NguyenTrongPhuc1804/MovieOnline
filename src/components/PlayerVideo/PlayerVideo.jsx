@@ -6,6 +6,9 @@ import { getFilmHomePage } from "../../redux/reducer/ManagementFilmSlice";
 import HtmlParser from "react-html-parser";
 import Button from "../Button/Button";
 import SlideCard from "../SlideCard/SlideCard";
+import Loading from "../Loading/Loading";
+import { displayPlayer, hiddenPlayer } from "../../redux/reducer/LoadingSlice";
+import LoadingPlayer from "../Loading/LoadingPlayer";
 
 function PlayerVideo() {
   const { name } = useParams();
@@ -28,11 +31,15 @@ function PlayerVideo() {
     dispatch(getDetailFilm(name));
     dispatch(getTheLoai(localStorage.getItem("randomCategory")));
     dispatch(getFilmHomePage());
+    dispatch(displayPlayer());
   }, []);
   return (
     <div className="bg-[#181616]  text-white pt-[1%]">
-      <div className=" w-full">
+      <div className="relative w-full">
         <iframe
+          onLoad={() => {
+            dispatch(hiddenPlayer());
+          }}
           className="sm:h-[62vh] h-[30vh] w-full sm:w-[80%] m-auto sm:mt-[5rem] mt-[5rem] lg:mt-[6.3rem]"
           title="video player"
           src={episode}

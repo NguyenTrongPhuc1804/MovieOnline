@@ -1,25 +1,47 @@
 import { calcLength } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/LogoCinema/cinema.png";
 import { getAllQuocGia, getAllTheLoai } from "../../redux/reducer/HeaderSlice";
+import { getFilmSearch } from "../../redux/reducer/ManagementFilmSlice";
 
 function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { allTheLoai } = useSelector((state) => state.HeaderSlice);
   const { allQuocGia } = useSelector((state) => state.HeaderSlice);
-
+  const myRef = useRef(null);
   const [state, setState] = useState({
     openMenuMobile: false,
     openSearch: false,
     openTheLoai: false,
     openQuocGia: false,
+    searchFilm: "",
   });
+  const handleChange = (e) => {
+    setState({ ...state, searchFilm: e.target.value });
+  };
+  const handleSubmit = (e) => {
+    navigate(`/phim/search/${state.searchFilm}`);
+    setState({ ...state, openMenuMobile: false });
+    e.preventDefault();
+  };
+
   useEffect(() => {
     dispatch(getAllTheLoai());
     dispatch(getAllQuocGia());
+    function handleClickOutside(event) {
+      if (myRef.current && !myRef.current.contains(event.target)) {
+        console.log("Clicked outside!");
+        setState({
+          ...state,
+          openTheLoai: false,
+          openQuocGia: false,
+        });
+      }
+    }
+    // document.addEventListener("mousedown", handleClickOutside);
   }, []);
   return (
     <>
@@ -140,6 +162,31 @@ function Header() {
                 onClick={() => {
                   setState({
                     ...state,
+                    openProduct: !state.openProduct,
+                  });
+                }}
+                type="button"
+                className="flex items-center gap-x-1 text-sm font-semibold leading-6 "
+                aria-expanded="false"
+              >
+                Phim Hoạt Hình
+              </button>{" "}
+              {/*
+    'Product' flyout menu, show/hide based on flyout menu state.
+
+    Entering: "transition ease-out duration-200"
+      From: "opacity-0 translate-y-1"
+      To: "opacity-100 translate-y-0"
+    Leaving: "transition ease-in duration-150"
+      From: "opacity-100 translate-y-0"
+      To: "opacity-0 translate-y-1"
+  */}{" "}
+            </div>
+            <div className="relative " ref={myRef}>
+              <button
+                onClick={() => {
+                  setState({
+                    ...state,
                     openTheLoai: !state.openTheLoai,
                     openQuocGia: false,
                   });
@@ -173,18 +220,20 @@ function Header() {
       To: "opacity-0 translate-y-1"
   */}{" "}
               <div
+                ref={myRef}
                 className={`${
                   state.openTheLoai ? "" : "hidden"
-                } absolute -left-8 top-full z-10 mt-3 w-screen max-w-md h-[500px] overflow-y-scroll rounded-3xl bg-[#333] text-white shadow-lg ring-1 ring-gray-900/5`}
+                } absolute -left-8 top-full z-10 mt-3 w-screen max-w-md h-[500px] overflow-y-scroll scrollbar-thin  scrollbar-thumb-red-700  scrollbar-track-gray-700 rounded-3xl bg-[#333] text-white shadow-lg ring-1 ring-gray-900/5`}
               >
                 <div className="p-4 grid grid-cols-2">
                   {allTheLoai?.map((categ, i) => (
                     <div
-                      onClick={() => {
+                      onClick={(e) => {
                         navigate(`/phim/list/${categ.slug}`);
+                        console.log(e.target);
                       }}
                       key={i}
-                      className="group relative flex items-center gap-x-6 rounded-lg p-4 text-base leading-6 hover:bg-gray-50 hover:text-red-600"
+                      className="group cursor-pointer relative flex items-center gap-x-6 rounded-lg p-4 text-base leading-6 hover:bg-gray-50 hover:text-red-600"
                     >
                       <div className="flex-auto">
                         <p href="#" className="block font-semibold ">
@@ -197,7 +246,7 @@ function Header() {
                 </div>
               </div>
             </div>
-            <div className="relative">
+            <div className="relative" ref={myRef}>
               <button
                 onClick={() => {
                   setState({
@@ -235,13 +284,18 @@ function Header() {
       To: "opacity-0 translate-y-1"
   */}{" "}
               <div
+                ref={myRef}
                 className={`${
                   state.openQuocGia ? "" : "hidden"
-                } absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-y-scroll h-[500px] rounded-3xl bg-[#333] text-white shadow-lg ring-1 ring-gray-900/5`}
+                } absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-y-scroll overflow-y-scroll scrollbar-thin  scrollbar-thumb-red-700  scrollbar-track-gray-700 h-[500px] rounded-3xl bg-[#333] text-white shadow-lg ring-1 ring-gray-900/5`}
               >
                 <div className="p-4 grid grid-cols-3 ">
                   {allQuocGia.map((quocGia, i) => (
                     <div
+                      onClick={(e) => {
+                        navigate(`/phim/list/country/${quocGia.slug}`);
+                        console.log(quocGia.slug);
+                      }}
                       key={i}
                       className="group relative flex items-center gap-x-6 rounded-lg p-4 text-base leading-6 hover:bg-gray-50 hover:text-red-600"
                     >
@@ -257,8 +311,8 @@ function Header() {
               </div>
             </div>
           </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <form>
+          <div ref={myRef} className="hidden lg:flex lg:flex-1 lg:justify-end">
+            <form onSubmit={handleSubmit}>
               <label
                 htmlFor="default-search"
                 className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -284,6 +338,8 @@ function Header() {
                   </svg>
                 </div>
                 <input
+                  value={state.searchFilm}
+                  onChange={handleChange}
                   type="search"
                   id="default-search"
                   className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -309,7 +365,13 @@ function Header() {
           {" "}
           {/* Background backdrop, show/hide based on slide-over state. */}
           <div className="fixed inset-0 z-10 " />
-          <div className="bg-[#121212]  fixed inset-y-0 right-0 z-10 w-full overflow-y-auto text-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            ref={myRef}
+            className="bg-[#121212]   fixed inset-y-0 right-0 z-10 w-full overflow-y-auto text-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+          >
             <div className="flex items-center justify-between">
               <NavLink to="/" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
@@ -450,6 +512,11 @@ function Header() {
                     >
                       {allTheLoai.map((catl, i) => (
                         <a
+                          onClick={(e) => {
+                            setState({ openMenuMobile: false });
+                            navigate(`/phim/list/${catl.slug}`);
+                            console.log(e.target);
+                          }}
                           key={i}
                           className="block rounded-lg py-2 pl-6 pr-3 text-base font-semibold leading-7  hover:bg-gray-50 hover:text-red-600"
                         >
@@ -500,6 +567,10 @@ function Header() {
                     >
                       {allQuocGia.map((catl, i) => (
                         <a
+                          onClick={(e) => {
+                            navigate(`/phim/list/country/${catl.slug}`);
+                            setState({ openQuocGia: false });
+                          }}
                           key={i}
                           className="block rounded-lg py-2 pl-6 pr-3 text-base font-semibold leading-7  hover:bg-gray-50 hover:text-red-600"
                         >
@@ -510,7 +581,7 @@ function Header() {
                   </div>
                 </div>
                 <div className="py-6">
-                  <form>
+                  <form onSubmit={handleSubmit}>
                     <label
                       htmlFor="default-search"
                       className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -536,6 +607,8 @@ function Header() {
                         </svg>
                       </div>
                       <input
+                        value={state.searchFilm}
+                        onChange={handleChange}
                         type="search"
                         id="default-search"
                         className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -544,7 +617,7 @@ function Header() {
                       />
                       <button
                         type="submit"
-                        className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        className="text-white absolute right-2.5 bottom-2.5 bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                       >
                         Search
                       </button>

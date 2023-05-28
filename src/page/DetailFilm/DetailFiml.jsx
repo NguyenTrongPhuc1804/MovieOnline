@@ -30,7 +30,7 @@ function DetailFiml() {
             backgroundSize: "cover",
           }}
         >
-          <div className="absolute inset-0 flex justify-center mt-[50%] sm:mt-[15%] bg-gradient-to-t from-[#181616] ">
+          <div className="absolute inset-0 flex justify-center pt-[50%] sm:pt-[15%] bg-gradient-to-t from-[#181616] ">
             <div className="grid grid-cols-12 sm:grid-cols-3 sm:w-[80%] h-fit w-full pl-[5%]  ">
               <div className="col-1 flex px-4 sm:block hidden w-[350px] h-[450px] ">
                 <img

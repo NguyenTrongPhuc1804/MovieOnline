@@ -6,7 +6,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 function Card(props) {
   const { film } = props;
   const navigation = useNavigate();
-  const random = Math.floor(Math.random() * film.category.length);
+  const random = Math.floor(Math.random() * film?.category?.length);
   const randomCategory = film.category[random].slug;
   return (
     <>

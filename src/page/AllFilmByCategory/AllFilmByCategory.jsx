@@ -5,7 +5,9 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import {
   getAllCategoryFilm,
+  getAllCountry,
   getFilmHomePage,
+  getFilmSearch,
   getPhimLe,
 } from "../../redux/reducer/ManagementFilmSlice";
 
@@ -15,10 +17,12 @@ function AllFilmByCategory() {
   //get data list new film
   const dispatch = useDispatch();
   const { catg } = useParams();
+  const { ctry } = useParams();
+  const { search } = useParams();
+  console.log(search);
   const PhimMoi = useSelector((state) => state.ManagementFilmSlice.PhimMoi);
   const PhimLe = useSelector((state) => state.ManagementFilmSlice.PhimLe);
   const { AllCategoryFilm } = useSelector((state) => state.ManagementFilmSlice);
-  console.log(AllCategoryFilm);
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
@@ -29,19 +33,29 @@ function AllFilmByCategory() {
       AllCategoryFilm?.params?.pagination?.totalItemsPerPage
   );
   const handleChange = (event, value) => {
-    dispatch(getAllCategoryFilm({ catg, page: value }));
-
+    if (catg) {
+      dispatch(getAllCategoryFilm({ catg, page: value }));
+    } else if (ctry) {
+      dispatch(getAllCountry({ ctry, page: value }));
+    } else if (search) {
+      dispatch(getFilmSearch(search));
+    }
     window.scrollTo(0, 0);
   };
   useEffect(() => {
     dispatch(getFilmHomePage());
-    dispatch(getPhimLe(1));
-    dispatch(getAllCategoryFilm({ catg }));
-  }, [catg]);
+    if (catg) {
+      dispatch(getAllCategoryFilm({ catg }));
+    } else if (ctry) {
+      dispatch(getAllCountry({ ctry }));
+    } else if (search) {
+      dispatch(getFilmSearch(search));
+    }
+  }, [catg, ctry, search]);
   return (
     <div className="sm:px-[8%] px-[2%] sm:mt-[5rem] mt-[5rem] lg:mt-[6.3rem] ">
       <div className="pt-[2%]">
-        <div className="relative px-5 py-2 text-3xl font-bold my-5 text-white">
+        <div className="relative px-5 py-2 text-xl sm:text-3xl font-bold my-5 text-white">
           <div className="absolute top-0 left-0 w-[4px] h-full bg-red-700"></div>
           <p>{AllCategoryFilm?.seoOnPage?.descriptionHead}</p>
         </div>
@@ -62,8 +76,8 @@ function AllFilmByCategory() {
               color="secondary"
               shape="rounded"
               count={totalPage}
-              showFirstButton
-              showLastButton
+              // showFirstButton
+              // showLastButton
               variant="outlined"
             />
           </Stack>

@@ -32,6 +32,13 @@ const ManagementFilmSlice = createSlice({
     });
     builder.addCase(getAllCategoryFilm.fulfilled, (state, action) => {
       state.AllCategoryFilm = action.payload;
+    });
+    builder.addCase(getAllCountry.fulfilled, (state, action) => {
+      state.AllCategoryFilm = action.payload;
+      console.log(action);
+    });
+    builder.addCase(getFilmSearch.fulfilled, (state, action) => {
+      state.AllCategoryFilm = action.payload;
       console.log(action);
     });
   },
@@ -106,6 +113,57 @@ export const getAllCategoryFilm = createAsyncThunk(
     try {
       const { data } = await requestMovie.get(
         `/v1/api/the-loai/${catg}?page=${page}`
+      );
+      dispatch(hidden());
+
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+export const getAllCountry = createAsyncThunk(
+  "film/getAllCountry",
+  async ({ ctry = "", page = 1 }, { dispatch }) => {
+    dispatch(display());
+
+    try {
+      const { data } = await requestMovie.get(
+        `/v1/api/quoc-gia/${ctry}?page=${page}`
+      );
+      dispatch(hidden());
+
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+export const getFilmSearch = createAsyncThunk(
+  "film/getFilmSearch",
+  async (search = "", { dispatch }) => {
+    dispatch(display());
+
+    try {
+      const { data } = await requestMovie.get(
+        `/v1/api/tim-kiem?keyword=${search}`
+      );
+      dispatch(hidden());
+
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+export const getListFilm = createAsyncThunk(
+  "film/getListFilm",
+  async (search = "", { dispatch }) => {
+    dispatch(display());
+
+    try {
+      const { data } = await requestMovie.get(
+        `/v1/api/tim-kiem?keyword=${search}`
       );
       dispatch(hidden());
 

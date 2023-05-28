@@ -19,6 +19,14 @@ function App() {
             <Route path="/phim/:name" element={<DetailFiml />} />
             <Route path="/phim/xem/:name" element={<PlayerVideo />} />
             <Route path="/phim/list/:catg" element={<AllFilmByCategory />} />
+            <Route
+              path="/phim/list/country/:ctry"
+              element={<AllFilmByCategory />}
+            />
+            <Route
+              path="/phim/search/:search"
+              element={<AllFilmByCategory />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>

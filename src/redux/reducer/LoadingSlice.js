@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   loadingState: false,
+  LoadingPlayer: false,
 };
 
 export const LoadingSlice = createSlice({
@@ -14,9 +15,16 @@ export const LoadingSlice = createSlice({
     hidden: (state) => {
       state.loadingState = false;
     },
+    displayPlayer: (state, action) => {
+      state.LoadingPlayer = true;
+    },
+    hiddenPlayer: (state) => {
+      state.LoadingPlayer = false;
+    },
   },
 });
 
-export const { hidden, display } = LoadingSlice.actions;
+export const { hidden, display, displayPlayer, hiddenPlayer } =
+  LoadingSlice.actions;
 
 export default LoadingSlice.reducer;
