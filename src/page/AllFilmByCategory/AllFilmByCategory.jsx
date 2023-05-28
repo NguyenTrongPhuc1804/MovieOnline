@@ -43,7 +43,7 @@ function AllFilmByCategory() {
       <div className="pt-[2%]">
         <div className="relative px-5 py-2 text-3xl font-bold my-5 text-white">
           <div className="absolute top-0 left-0 w-[4px] h-full bg-red-700"></div>
-          <p>{AllCategoryFilm?.seoOnPage.descriptionHead}</p>
+          <p>{AllCategoryFilm?.seoOnPage?.descriptionHead}</p>
         </div>
       </div>
       <div className="grid lg:grid-cols-5 sm:grid-cols-4 grid-cols-2  gap-4">
