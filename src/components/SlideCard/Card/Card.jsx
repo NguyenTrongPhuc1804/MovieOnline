@@ -24,6 +24,7 @@ function Card(props) {
           <i className="fa-solid fa-play  bg-black bg-opacity-70 hover:bg-yellow-500 transition-colors  p-5 rounded-full text-white"></i>
         </button>
         <img
+          loading="lazy"
           className="w-full sm:h-[300px] h-[250px] sm:h-[500px] object-cover group-hover:scale-110 transition-all"
           // src={film.thumb_url}
           src={`https://img.ophim1.com/uploads/movies/${film.thumb_url}`}

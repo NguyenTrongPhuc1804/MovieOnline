@@ -1,11 +1,13 @@
+import { calcLength } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/LogoCinema/cinema.png";
 import { getAllQuocGia, getAllTheLoai } from "../../redux/reducer/HeaderSlice";
 
 function Header() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { allTheLoai } = useSelector((state) => state.HeaderSlice);
   const { allQuocGia } = useSelector((state) => state.HeaderSlice);
 
@@ -15,7 +17,6 @@ function Header() {
     openTheLoai: false,
     openQuocGia: false,
   });
-  console.log(allQuocGia);
   useEffect(() => {
     dispatch(getAllTheLoai());
     dispatch(getAllQuocGia());
@@ -179,14 +180,17 @@ function Header() {
                 <div className="p-4 grid grid-cols-2">
                   {allTheLoai?.map((categ, i) => (
                     <div
+                      onClick={() => {
+                        navigate(`/phim/list/${categ.slug}`);
+                      }}
                       key={i}
                       className="group relative flex items-center gap-x-6 rounded-lg p-4 text-base leading-6 hover:bg-gray-50 hover:text-red-600"
                     >
                       <div className="flex-auto">
-                        <a href="#" className="block font-semibold ">
+                        <p href="#" className="block font-semibold ">
                           {categ.name}
                           <span className="absolute inset-0" />
-                        </a>
+                        </p>
                       </div>
                     </div>
                   ))}

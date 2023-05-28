@@ -9,6 +9,7 @@ const initialState = {
   PhimMoi: {},
   PhimBo: {},
   HoatHinh: {},
+  AllCategoryFilm: {},
 };
 
 const ManagementFilmSlice = createSlice({
@@ -21,7 +22,6 @@ const ManagementFilmSlice = createSlice({
       state.PhimMoi = action.payload.data;
     });
     builder.addCase(getPhimLe.fulfilled, (state, action) => {
-      console.log(action);
       state.PhimLe = action.payload;
     });
     builder.addCase(getPhimBo.fulfilled, (state, action) => {
@@ -29,6 +29,10 @@ const ManagementFilmSlice = createSlice({
     });
     builder.addCase(getPhimHoatHinh.fulfilled, (state, action) => {
       state.HoatHinh = action.payload;
+    });
+    builder.addCase(getAllCategoryFilm.fulfilled, (state, action) => {
+      state.AllCategoryFilm = action.payload;
+      console.log(action);
     });
   },
 });
@@ -88,6 +92,23 @@ export const getPhimHoatHinh = createAsyncThunk(
       const { data } = await requestMovie.get(
         `/v1/api/danh-sach/hoat-hinh?page=${page}`
       );
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+export const getAllCategoryFilm = createAsyncThunk(
+  "film/getAllCategoryFilm",
+  async ({ catg = "", page = 1 }, { dispatch }) => {
+    dispatch(display());
+
+    try {
+      const { data } = await requestMovie.get(
+        `/v1/api/the-loai/${catg}?page=${page}`
+      );
+      dispatch(hidden());
+
       return data;
     } catch (err) {
       console.log(err);

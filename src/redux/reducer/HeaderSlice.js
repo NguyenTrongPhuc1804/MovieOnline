@@ -17,7 +17,6 @@ export const HeaderSlice = createSlice({
     });
     builder.addCase(getAllQuocGia.fulfilled, (state, action) => {
       state.allQuocGia = action.payload.items;
-      console.log(action);
     });
   },
 });

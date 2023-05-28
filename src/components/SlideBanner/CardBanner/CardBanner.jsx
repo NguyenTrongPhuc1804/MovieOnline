@@ -39,6 +39,7 @@ function CardBanner(props) {
           <i className="fa-solid fa-play  bg-black bg-opacity-70 hover:bg-yellow-500 hover:bg-opacity-50 transition-colors  py-5 px-7 rounded-full text-white"></i>
         </button>
         <img
+          loading="lazy"
           className="w-full object-cover  transition sm:h-[80vh] h-[55vh]"
           src={film?.poster_url}
           // src={imgBanner}
