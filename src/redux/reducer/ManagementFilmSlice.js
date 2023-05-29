@@ -41,6 +41,10 @@ const ManagementFilmSlice = createSlice({
       state.AllCategoryFilm = action.payload;
       console.log(action);
     });
+    builder.addCase(getListFilm.fulfilled, (state, action) => {
+      state.AllCategoryFilm = action.payload;
+      console.log(action);
+    });
   },
 });
 export const getFilmHomePage = createAsyncThunk(
@@ -141,7 +145,7 @@ export const getAllCountry = createAsyncThunk(
 );
 export const getFilmSearch = createAsyncThunk(
   "film/getFilmSearch",
-  async (search = "", { dispatch }) => {
+  async ({ search = "", page = 0 }, { dispatch }) => {
     dispatch(display());
 
     try {
@@ -156,14 +160,15 @@ export const getFilmSearch = createAsyncThunk(
     }
   }
 );
+//tiep tuc
 export const getListFilm = createAsyncThunk(
   "film/getListFilm",
-  async (search = "", { dispatch }) => {
+  async ({ catg = "", page = "1" }, { dispatch }) => {
     dispatch(display());
 
     try {
       const { data } = await requestMovie.get(
-        `/v1/api/tim-kiem?keyword=${search}`
+        `/v1/api/danh-sach/${catg}?page=${page}`
       );
       dispatch(hidden());
 

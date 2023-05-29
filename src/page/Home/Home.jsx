@@ -19,6 +19,8 @@ function Home() {
   const PhimBo = useSelector((state) => state.ManagementFilmSlice.PhimBo);
   const HoatHinh = useSelector((state) => state.ManagementFilmSlice.HoatHinh);
   const loading = useSelector((state) => state.LoadingSlice.loadingState);
+  const { AllCategoryFilm } = useSelector((state) => state.ManagementFilmSlice);
+
   useEffect(() => {
     dispatch(getFilmHomePage());
     dispatch(getPhimLe());

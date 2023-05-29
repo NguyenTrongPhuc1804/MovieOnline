@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../../components/SlideCard/Card/Card";
 import Pagination from "@mui/material/Pagination";
@@ -8,6 +8,7 @@ import {
   getAllCountry,
   getFilmHomePage,
   getFilmSearch,
+  getListFilm,
   getPhimLe,
 } from "../../redux/reducer/ManagementFilmSlice";
 
@@ -15,14 +16,18 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useParams } from "react-router-dom";
 function AllFilmByCategory() {
   //get data list new film
+  const [page, setPage] = useState(1);
+  console.log(page);
   const dispatch = useDispatch();
   const { catg } = useParams();
   const { ctry } = useParams();
   const { search } = useParams();
-  console.log(search);
+  const { list } = useParams();
   const PhimMoi = useSelector((state) => state.ManagementFilmSlice.PhimMoi);
   const PhimLe = useSelector((state) => state.ManagementFilmSlice.PhimLe);
+  console.log(catg);
   const { AllCategoryFilm } = useSelector((state) => state.ManagementFilmSlice);
+
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
@@ -34,23 +39,75 @@ function AllFilmByCategory() {
   );
   const handleChange = (event, value) => {
     if (catg) {
-      dispatch(getAllCategoryFilm({ catg, page: value }));
+      switch (catg) {
+        case "phim-moi":
+          dispatch(getListFilm({ catg, page: value }));
+          break;
+        case "phim-le":
+          dispatch(getListFilm({ catg, page: value }));
+          break;
+        case "phim-bo":
+          dispatch(getListFilm({ catg, page: value }));
+          break;
+        case "hoat-hinh":
+          dispatch(getListFilm({ catg, page: value }));
+          break;
+        case "tv-shows":
+          dispatch(getListFilm({ catg, page: value }));
+          break;
+        case "phim-long-tieng":
+          dispatch(getListFilm({ catg, page: value }));
+          break;
+        default:
+          dispatch(getAllCategoryFilm({ catg, page: value }));
+
+          break;
+      }
+      setPage(value);
     } else if (ctry) {
       dispatch(getAllCountry({ ctry, page: value }));
+      setPage(value);
     } else if (search) {
-      dispatch(getFilmSearch(search));
+      dispatch(getFilmSearch({ search, page: value }));
+      setPage(value);
     }
     window.scrollTo(0, 0);
   };
   useEffect(() => {
     dispatch(getFilmHomePage());
     if (catg) {
-      dispatch(getAllCategoryFilm({ catg }));
+      switch (catg) {
+        case "phim-moi":
+          dispatch(getListFilm({ catg }));
+          break;
+        case "phim-le":
+          dispatch(getListFilm({ catg }));
+          break;
+        case "phim-bo":
+          dispatch(getListFilm({ catg }));
+          break;
+        case "hoat-hinh":
+          dispatch(getListFilm({ catg }));
+          break;
+        case "tv-shows":
+          dispatch(getListFilm({ catg }));
+          break;
+        case "phim-long-tieng":
+          dispatch(getListFilm({ catg }));
+          break;
+        default:
+          dispatch(getAllCategoryFilm({ catg }));
+          break;
+      }
+      setPage(1);
     } else if (ctry) {
       dispatch(getAllCountry({ ctry }));
+      setPage(1);
     } else if (search) {
-      dispatch(getFilmSearch(search));
+      dispatch(getFilmSearch({ search, page: 1 }));
+      setPage(1);
     }
+    window.scrollTo(0, 0);
   }, [catg, ctry, search]);
   return (
     <div className="sm:px-[8%] px-[2%] sm:mt-[5rem] mt-[5rem] lg:mt-[6.3rem] ">
@@ -60,7 +117,7 @@ function AllFilmByCategory() {
           <p>{AllCategoryFilm?.seoOnPage?.descriptionHead}</p>
         </div>
       </div>
-      <div className="grid lg:grid-cols-5 sm:grid-cols-4 grid-cols-2  gap-4">
+      <div className="grid lg:grid-cols-4 sm:grid-cols-4 grid-cols-2  gap-4">
         {AllCategoryFilm?.items?.map((item, i) => (
           <div key={i} className="sm:h-[350px] rounded-md overflow-hidden">
             <Card film={item} />
@@ -72,10 +129,11 @@ function AllFilmByCategory() {
           <Stack spacing={2}>
             <Pagination
               onChange={handleChange}
-              defaultPage={1}
               color="secondary"
               shape="rounded"
               count={totalPage}
+              defaultValue={1}
+              page={page}
               // showFirstButton
               // showLastButton
               variant="outlined"

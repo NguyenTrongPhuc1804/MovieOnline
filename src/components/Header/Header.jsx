@@ -4,7 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/LogoCinema/cinema.png";
 import { getAllQuocGia, getAllTheLoai } from "../../redux/reducer/HeaderSlice";
-import { getFilmSearch } from "../../redux/reducer/ManagementFilmSlice";
+import {
+  getFilmSearch,
+  getListFilm,
+} from "../../redux/reducer/ManagementFilmSlice";
 
 function Header() {
   const dispatch = useDispatch();
@@ -24,7 +27,7 @@ function Header() {
   };
   const handleSubmit = (e) => {
     navigate(`/phim/search/${state.searchFilm}`);
-    setState({ ...state, openMenuMobile: false });
+    setState({ ...state, openMenuMobile: false, searchFilm: "" });
     e.preventDefault();
   };
 
@@ -85,6 +88,7 @@ function Header() {
             <div className="relative">
               <button
                 onClick={() => {
+                  navigate(`/phim/list/phim-moi`);
                   setState({
                     ...state,
                     openProduct: !state.openProduct,
@@ -110,6 +114,8 @@ function Header() {
             <div className="relative">
               <button
                 onClick={() => {
+                  navigate(`/phim/list/phim-le`);
+
                   setState({
                     ...state,
                     openProduct: !state.openProduct,
@@ -135,6 +141,8 @@ function Header() {
             <div className="relative">
               <button
                 onClick={() => {
+                  navigate(`/phim/list/phim-bo`);
+
                   setState({
                     ...state,
                     openProduct: !state.openProduct,
@@ -160,6 +168,8 @@ function Header() {
             <div className="relative">
               <button
                 onClick={() => {
+                  navigate(`/phim/list/hoat-hinh`);
+
                   setState({
                     ...state,
                     openProduct: !state.openProduct,
@@ -312,7 +322,7 @@ function Header() {
             </div>
           </div>
           <div ref={myRef} className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="w-[70%]">
               <label
                 htmlFor="default-search"
                 className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -407,9 +417,12 @@ function Header() {
                   <div className="-mx-3">
                     <button
                       onClick={() => {
+                        navigate(`/phim/list/phim-moi`);
+
                         setState({
                           ...state,
                           openProduct: !state.openProduct,
+                          openMenuMobile: false,
                         });
                       }}
                       type="button"
@@ -429,9 +442,12 @@ function Header() {
                   <div className="-mx-3">
                     <button
                       onClick={() => {
+                        navigate(`/phim/list/phim-le`);
+
                         setState({
                           ...state,
                           openProduct: !state.openProduct,
+                          openMenuMobile: false,
                         });
                       }}
                       type="button"
@@ -451,9 +467,12 @@ function Header() {
                   <div className="-mx-3">
                     <button
                       onClick={() => {
+                        navigate(`/phim/list/phim-bo`);
+
                         setState({
                           ...state,
                           openProduct: !state.openProduct,
+                          openMenuMobile: false,
                         });
                       }}
                       type="button"
@@ -462,6 +481,31 @@ function Header() {
                       aria-expanded="false"
                     >
                       Phim Bộ{" "}
+                      {/*
+            Expand/collapse icon, toggle classes based on menu open state.
+
+            Open: "rotate-180", Closed: ""
+          */}{" "}
+                    </button>{" "}
+                    {/* 'Product' sub-menu, show/hide based on menu state. */}{" "}
+                  </div>
+                  <div className="-mx-3">
+                    <button
+                      onClick={() => {
+                        navigate(`/phim/list/hoat-hinh`);
+
+                        setState({
+                          ...state,
+                          openProduct: !state.openProduct,
+                          openMenuMobile: false,
+                        });
+                      }}
+                      type="button"
+                      className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50 hover:text-black"
+                      aria-controls="disclosure-1"
+                      aria-expanded="false"
+                    >
+                      Phim Hoạt Hình{" "}
                       {/*
             Expand/collapse icon, toggle classes based on menu open state.
 
