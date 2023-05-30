@@ -16,8 +16,6 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useParams } from "react-router-dom";
 function AllFilmByCategory() {
   //get data list new film
-  const [page, setPage] = useState(1);
-  console.log(page);
   const dispatch = useDispatch();
   const { catg } = useParams();
   const { ctry } = useParams();
@@ -27,7 +25,8 @@ function AllFilmByCategory() {
   const PhimLe = useSelector((state) => state.ManagementFilmSlice.PhimLe);
   const { AllCategoryFilm } = useSelector((state) => state.ManagementFilmSlice);
   console.log(AllCategoryFilm);
-
+  const [page, setPage] = useState(1);
+  console.log(AllCategoryFilm);
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
@@ -54,24 +53,38 @@ function AllFilmByCategory() {
       switch (catg) {
         case "phim-moi":
           dispatch(getListFilm({ catg, page: value }));
+          setPage(value);
+
           break;
         case "phim-le":
           dispatch(getListFilm({ catg, page: value }));
+          setPage(value);
+
           break;
         case "phim-bo":
           dispatch(getListFilm({ catg, page: value }));
+          setPage(value);
+
           break;
         case "hoat-hinh":
           dispatch(getListFilm({ catg, page: value }));
+          setPage(value);
+
           break;
         case "tv-shows":
           dispatch(getListFilm({ catg, page: value }));
+          setPage(value);
+
           break;
         case "phim-long-tieng":
           dispatch(getListFilm({ catg, page: value }));
+          setPage(value);
+
           break;
         default:
           dispatch(getAllCategoryFilm({ catg, page: value }));
+
+          setPage(value);
 
           break;
       }
@@ -111,25 +124,23 @@ function AllFilmByCategory() {
           dispatch(getAllCategoryFilm({ catg }));
           break;
       }
-      setPage(1);
     } else if (ctry) {
       dispatch(getAllCountry({ ctry }));
-      setPage(1);
     } else if (search) {
       dispatch(getFilmSearch({ search, page: 1 }));
-      setPage(1);
     }
+    setPage(1);
     window.scrollTo(0, 0);
   }, [catg, ctry, search]);
   return (
-    <div className="sm:px-[8%] px-[2%] sm:mt-[5rem] mt-[5rem] lg:mt-[6.3rem] ">
+    <div className="sm:px-[12%] px-[2%] sm:mt-[5rem] mt-[5rem] lg:mt-[6.3rem] ">
       <div className="pt-[2%]">
         <div className="relative px-5 py-2 text-xl sm:text-3xl font-bold my-5 text-white">
           <div className="absolute top-0 left-0 w-[4px] h-full bg-red-700"></div>
           <p>{AllCategoryFilm?.seoOnPage?.descriptionHead}</p>
         </div>
       </div>
-      <div className="grid lg:grid-cols-5 sm:grid-cols-4 grid-cols-2  gap-4">
+      <div className="grid lg:grid-cols-4 sm:grid-cols-4 grid-cols-2  gap-4">
         {handleRenderFilm()}
       </div>
       <div className="flex justify-center mt-[2%]">

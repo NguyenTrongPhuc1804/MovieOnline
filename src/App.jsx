@@ -24,6 +24,10 @@ function App() {
               element={<AllFilmByCategory />}
             />
             <Route
+              path="/phim/list/type/:list"
+              element={<AllFilmByCategory />}
+            />
+            <Route
               path="/phim/search/:search"
               element={<AllFilmByCategory />}
             />

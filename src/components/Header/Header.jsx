@@ -85,7 +85,7 @@ function Header() {
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
-            <div className="relative">
+            <div className="relative ">
               <button
                 onClick={() => {
                   navigate(`/phim/list/phim-moi`);
@@ -95,7 +95,7 @@ function Header() {
                   });
                 }}
                 type="button"
-                className="flex items-center gap-x-1 text-sm font-semibold leading-6 "
+                className="flex items-center gap-x-1 text-base font-semibold leading-6 "
                 aria-expanded="false"
               >
                 Phim Mới
@@ -111,7 +111,7 @@ function Header() {
       To: "opacity-0 translate-y-1"
   */}{" "}
             </div>
-            <div className="relative">
+            <div className="relative ">
               <button
                 onClick={() => {
                   navigate(`/phim/list/phim-le`);
@@ -122,7 +122,7 @@ function Header() {
                   });
                 }}
                 type="button"
-                className="flex items-center gap-x-1 text-sm font-semibold leading-6 "
+                className="flex items-center gap-x-1 text-base font-semibold leading-6 "
                 aria-expanded="false"
               >
                 Phim Lẻ
@@ -138,7 +138,7 @@ function Header() {
       To: "opacity-0 translate-y-1"
   */}{" "}
             </div>
-            <div className="relative">
+            <div className="relative ">
               <button
                 onClick={() => {
                   navigate(`/phim/list/phim-bo`);
@@ -149,7 +149,7 @@ function Header() {
                   });
                 }}
                 type="button"
-                className="flex items-center gap-x-1 text-sm font-semibold leading-6 "
+                className="flex items-center gap-x-1 text-base font-semibold leading-6 "
                 aria-expanded="false"
               >
                 Phim Bộ
@@ -165,7 +165,7 @@ function Header() {
       To: "opacity-0 translate-y-1"
   */}{" "}
             </div>
-            <div className="relative">
+            <div className="relative ">
               <button
                 onClick={() => {
                   navigate(`/phim/list/hoat-hinh`);
@@ -176,7 +176,7 @@ function Header() {
                   });
                 }}
                 type="button"
-                className="flex items-center gap-x-1 text-sm font-semibold leading-6 "
+                className="flex items-center gap-x-1 text-base font-semibold leading-6 "
                 aria-expanded="false"
               >
                 Phim Hoạt Hình
@@ -192,7 +192,7 @@ function Header() {
       To: "opacity-0 translate-y-1"
   */}{" "}
             </div>
-            <div className="relative " ref={myRef}>
+            <div className="relative  " ref={myRef}>
               <button
                 onClick={() => {
                   setState({
@@ -202,7 +202,7 @@ function Header() {
                   });
                 }}
                 type="button"
-                className="flex items-center gap-x-1 text-sm font-semibold leading-6 "
+                className="flex items-center gap-x-1 text-base font-semibold leading-6 "
                 aria-expanded="false"
               >
                 Thể Loại
@@ -266,7 +266,7 @@ function Header() {
                   });
                 }}
                 type="button"
-                className="flex items-center gap-x-1 text-sm font-semibold leading-6 "
+                className="flex items-center gap-x-1 text-base font-semibold leading-6 "
                 aria-expanded="false"
               >
                 Quốc Gia
