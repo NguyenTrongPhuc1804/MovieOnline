@@ -134,7 +134,7 @@ function DetailFiml() {
       </div>
       <Element
         name="section1"
-        className="bg-[#181616] text-white w-full px-[10%] pt-[10%] "
+        className="bg-[#181616] text-white w-full px-[5%] pt-[10%] "
       >
         <h3 className="text-3xl font-bold mb-5">Trailer </h3>
         {!videoId ? (

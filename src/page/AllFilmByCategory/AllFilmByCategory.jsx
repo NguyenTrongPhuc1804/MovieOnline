@@ -117,7 +117,7 @@ function AllFilmByCategory() {
           <p>{AllCategoryFilm?.seoOnPage?.descriptionHead}</p>
         </div>
       </div>
-      <div className="grid lg:grid-cols-4 sm:grid-cols-4 grid-cols-2  gap-4">
+      <div className="grid lg:grid-cols-5 sm:grid-cols-4 grid-cols-2  gap-4">
         {AllCategoryFilm?.items?.map((item, i) => (
           <div key={i} className="sm:h-[350px] rounded-md overflow-hidden">
             <Card film={item} />

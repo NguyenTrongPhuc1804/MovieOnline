@@ -47,7 +47,7 @@ function PlayerVideo() {
           allowFullScreen={true}
         />
       </div>
-      <div className="sm:max-w-[80%] m-auto  p-3 border-[1px] max-h-[300px] overflow-y-scroll  border-white mt-[3%] flex">
+      <div className="sm:max-w-[80%] m-auto   p-3 border-[1px] max-h-[300px] overflow-y-scroll scrollbar-thin  scrollbar-thumb-red-700  scrollbar-track-gray-700  border-white mt-[3%] flex">
         <div className="">
           <div className="text-xs sm:text-lg font-bold ">Server :</div>
           <div className="flex-wrap ">
