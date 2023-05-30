@@ -34,17 +34,14 @@ function Header() {
   useEffect(() => {
     dispatch(getAllTheLoai());
     dispatch(getAllQuocGia());
-    function handleClickOutside(event) {
-      if (myRef.current && !myRef.current.contains(event.target)) {
-        console.log("Clicked outside!");
-        setState({
-          ...state,
-          openTheLoai: false,
-          openQuocGia: false,
-        });
-      }
-    }
-    // document.addEventListener("mousedown", handleClickOutside);
+
+    window.addEventListener("click", function (e) {
+      setState({
+        ...state,
+        openTheLoai: false,
+        openQuocGia: false,
+      });
+    });
   }, []);
   return (
     <>
@@ -192,7 +189,39 @@ function Header() {
       To: "opacity-0 translate-y-1"
   */}{" "}
             </div>
-            <div className="relative  " ref={myRef}>
+            <div className="relative ">
+              <button
+                onClick={() => {
+                  navigate(`/phim/list/phim-long-tieng`);
+
+                  setState({
+                    ...state,
+                    openProduct: !state.openProduct,
+                  });
+                }}
+                type="button"
+                className="flex items-center gap-x-1 text-base font-semibold leading-6 "
+                aria-expanded="false"
+              >
+                Phim Lồng tiếng
+              </button>{" "}
+              {/*
+    'Product' flyout menu, show/hide based on flyout menu state.
+
+    Entering: "transition ease-out duration-200"
+      From: "opacity-0 translate-y-1"
+      To: "opacity-100 translate-y-0"
+    Leaving: "transition ease-in duration-150"
+      From: "opacity-100 translate-y-0"
+      To: "opacity-0 translate-y-1"
+  */}{" "}
+            </div>
+            <div
+              className="relative  "
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            >
               <button
                 onClick={() => {
                   setState({
@@ -233,14 +262,13 @@ function Header() {
                 ref={myRef}
                 className={`${
                   state.openTheLoai ? "" : "hidden"
-                } absolute -left-8 top-full z-10 mt-3 w-screen max-w-md h-[500px] overflow-y-scroll scrollbar-thin  scrollbar-thumb-red-700  scrollbar-track-gray-700 rounded-3xl bg-[#333] text-white shadow-lg ring-1 ring-gray-900/5`}
+                } absolute left-[-10rem] top-full z-10 mt-3 w-screen max-w-md h-[500px] overflow-y-scroll scrollbar-thin  scrollbar-thumb-red-700  scrollbar-track-gray-700 rounded-3xl bg-[#333] text-white shadow-lg ring-1 ring-gray-900/5`}
               >
                 <div className="p-4 grid grid-cols-2">
                   {allTheLoai?.map((categ, i) => (
                     <div
                       onClick={(e) => {
                         navigate(`/phim/list/${categ.slug}`);
-                        console.log(e.target);
                       }}
                       key={i}
                       className="group cursor-pointer relative flex items-center gap-x-6 rounded-lg p-4 text-base leading-6 hover:bg-gray-50 hover:text-red-600"
@@ -256,9 +284,15 @@ function Header() {
                 </div>
               </div>
             </div>
-            <div className="relative" ref={myRef}>
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+              className="relative"
+              ref={myRef}
+            >
               <button
-                onClick={() => {
+                onClick={(e) => {
                   setState({
                     ...state,
                     openQuocGia: !state.openQuocGia,
@@ -294,17 +328,17 @@ function Header() {
       To: "opacity-0 translate-y-1"
   */}{" "}
               <div
+                onClick={(e) => {}}
                 ref={myRef}
                 className={`${
                   state.openQuocGia ? "" : "hidden"
-                } absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-y-scroll overflow-y-scroll scrollbar-thin  scrollbar-thumb-red-700  scrollbar-track-gray-700 h-[500px] rounded-3xl bg-[#333] text-white shadow-lg ring-1 ring-gray-900/5`}
+                } absolute left-[-10rem] top-full z-10 mt-3 w-screen max-w-md overflow-y-scroll overflow-y-scroll scrollbar-thin  scrollbar-thumb-red-700  scrollbar-track-gray-700 h-[500px] rounded-3xl bg-[#333] text-white shadow-lg ring-1 ring-gray-900/5`}
               >
                 <div className="p-4 grid grid-cols-3 ">
                   {allQuocGia.map((quocGia, i) => (
                     <div
                       onClick={(e) => {
                         navigate(`/phim/list/country/${quocGia.slug}`);
-                        console.log(quocGia.slug);
                       }}
                       key={i}
                       className="group relative flex items-center gap-x-6 rounded-lg p-4 text-base leading-6 hover:bg-gray-50 hover:text-red-600"
@@ -322,7 +356,7 @@ function Header() {
             </div>
           </div>
           <div ref={myRef} className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <form onSubmit={handleSubmit} className="w-[70%]">
+            <form onSubmit={handleSubmit} className="w-[90%]">
               <label
                 htmlFor="default-search"
                 className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -517,6 +551,31 @@ function Header() {
                   <div className="-mx-3">
                     <button
                       onClick={() => {
+                        navigate(`/phim/list/phim-long-tieng`);
+
+                        setState({
+                          ...state,
+                          openProduct: !state.openProduct,
+                          openMenuMobile: false,
+                        });
+                      }}
+                      type="button"
+                      className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50 hover:text-black"
+                      aria-controls="disclosure-1"
+                      aria-expanded="false"
+                    >
+                      Phim Lồng Tiếng{" "}
+                      {/*
+            Expand/collapse icon, toggle classes based on menu open state.
+
+            Open: "rotate-180", Closed: ""
+          */}{" "}
+                    </button>{" "}
+                    {/* 'Product' sub-menu, show/hide based on menu state. */}{" "}
+                  </div>
+                  <div className="-mx-3">
+                    <button
+                      onClick={() => {
                         setState({
                           ...state,
                           openTheLoai: !state.openTheLoai,
@@ -559,7 +618,6 @@ function Header() {
                           onClick={(e) => {
                             setState({ openMenuMobile: false });
                             navigate(`/phim/list/${catl.slug}`);
-                            console.log(e.target);
                           }}
                           key={i}
                           className="block rounded-lg py-2 pl-6 pr-3 text-base font-semibold leading-7  hover:bg-gray-50 hover:text-red-600"

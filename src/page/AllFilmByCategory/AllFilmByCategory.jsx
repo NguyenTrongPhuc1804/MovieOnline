@@ -24,9 +24,7 @@ function AllFilmByCategory() {
   const PhimMoi = useSelector((state) => state.ManagementFilmSlice.PhimMoi);
   const PhimLe = useSelector((state) => state.ManagementFilmSlice.PhimLe);
   const { AllCategoryFilm } = useSelector((state) => state.ManagementFilmSlice);
-  console.log(AllCategoryFilm);
   const [page, setPage] = useState(1);
-  console.log(AllCategoryFilm);
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
