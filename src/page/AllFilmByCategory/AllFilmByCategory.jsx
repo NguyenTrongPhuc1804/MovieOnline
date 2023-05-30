@@ -38,7 +38,7 @@ function AllFilmByCategory() {
       AllCategoryFilm?.params?.pagination?.totalItemsPerPage
   );
   const handleRenderFilm = () => {
-    if (AllCategoryFilm?.items.length === 0) {
+    if (AllCategoryFilm?.items?.length === 0) {
       return (
         <p className="text-xl font-bold text-white">Không tìm thấy phim ....</p>
       );
