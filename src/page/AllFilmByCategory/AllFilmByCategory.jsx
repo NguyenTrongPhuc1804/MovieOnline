@@ -25,8 +25,8 @@ function AllFilmByCategory() {
   const { list } = useParams();
   const PhimMoi = useSelector((state) => state.ManagementFilmSlice.PhimMoi);
   const PhimLe = useSelector((state) => state.ManagementFilmSlice.PhimLe);
-  console.log(catg);
   const { AllCategoryFilm } = useSelector((state) => state.ManagementFilmSlice);
+  console.log(AllCategoryFilm);
 
   const darkTheme = createTheme({
     palette: {
@@ -37,6 +37,18 @@ function AllFilmByCategory() {
     AllCategoryFilm?.params?.pagination?.totalItems /
       AllCategoryFilm?.params?.pagination?.totalItemsPerPage
   );
+  const handleRenderFilm = () => {
+    if (AllCategoryFilm?.items.length === 0) {
+      return (
+        <p className="text-xl font-bold text-white">Không tìm thấy phim ....</p>
+      );
+    }
+    return AllCategoryFilm?.items?.map((item, i) => (
+      <div key={i} className="sm:h-[350px] rounded-md overflow-hidden">
+        <Card film={item} />
+      </div>
+    ));
+  };
   const handleChange = (event, value) => {
     if (catg) {
       switch (catg) {
@@ -118,11 +130,7 @@ function AllFilmByCategory() {
         </div>
       </div>
       <div className="grid lg:grid-cols-5 sm:grid-cols-4 grid-cols-2  gap-4">
-        {AllCategoryFilm?.items?.map((item, i) => (
-          <div key={i} className="sm:h-[350px] rounded-md overflow-hidden">
-            <Card film={item} />
-          </div>
-        ))}
+        {handleRenderFilm()}
       </div>
       <div className="flex justify-center mt-[2%]">
         <ThemeProvider theme={darkTheme}>
