@@ -356,7 +356,12 @@ function Header() {
               </div>
             </div>
           </div>
-          <div ref={myRef} className="hidden lg:flex lg:flex-1 lg:justify-end">
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            className="hidden lg:flex lg:flex-1 lg:justify-end"
+          >
             <form onSubmit={handleSubmit} className="w-[90%]">
               <label
                 htmlFor="default-search"
