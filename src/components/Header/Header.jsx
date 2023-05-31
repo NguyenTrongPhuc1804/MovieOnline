@@ -58,7 +58,8 @@ function Header() {
           </div>
           <div className="flex lg:hidden">
             <button
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
                 setState({ ...state, openMenuMobile: !state.openMenuMobile });
               }}
               type="button"
