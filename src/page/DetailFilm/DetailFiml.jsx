@@ -13,6 +13,7 @@ function DetailFiml() {
   const detailFilm = useSelector((state) => state.DetailFilm.detailFilm);
   const { listTheLoai } = useSelector((state) => state.DetailFilm);
   const videoId = detailFilm?.item?.trailer_url.split("v=")[1];
+  console.log(listTheLoai);
   useEffect(() => {
     dispatch(getDetailFilm({ name }));
     dispatch(getTheLoai(localStorage.getItem("randomCategory")));

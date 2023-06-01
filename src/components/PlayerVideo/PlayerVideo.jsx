@@ -37,13 +37,7 @@ function PlayerVideo() {
   return (
     <div className="bg-[#181616]  text-white pt-[1%]">
       <div className="relative w-full">
-        <iframe
-          className="sm:h-[62vh] h-[30vh] w-full sm:w-[80%] m-auto sm:mt-[5rem] mt-[5rem] lg:mt-[6.3rem]"
-          title="video player"
-          src={linkFilm}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen={true}
-        />
+        <Video link={linkFilm} />
       </div>
       <div className="sm:max-w-[80%] m-auto   p-3 border-[1px] max-h-[300px] overflow-y-scroll scrollbar-thin  scrollbar-thumb-red-700  scrollbar-track-gray-700  border-white mt-[3%] flex">
         <div className="">

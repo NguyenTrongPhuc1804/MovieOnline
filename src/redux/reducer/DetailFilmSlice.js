@@ -4,7 +4,7 @@ import { display, hidden } from "./LoadingSlice";
 
 const initialState = {
   detailFilm: {},
-  listTheLoai: {},
+  listTheLoai: [],
   linkFilm: "",
 };
 
@@ -23,9 +23,9 @@ export const DetailFilm = createSlice({
         action.payload.data.item.episodes[sever].server_data[
           episodes
         ].link_embed;
-      console.log(action.payload);
     });
     builder.addCase(getTheLoai.fulfilled, (state, action) => {
+      console.log(action.payload);
       state.listTheLoai = action.payload;
     });
   },
@@ -46,7 +46,7 @@ export const getDetailFilm = createAsyncThunk(
 );
 export const getTheLoai = createAsyncThunk(
   "film/getTheLoai",
-  async ({ category }, { dispatch }) => {
+  async (category, { dispatch }) => {
     dispatch(display());
     try {
       const { data } = await requestMovie.get(`/v1/api/the-loai/${category}`);
