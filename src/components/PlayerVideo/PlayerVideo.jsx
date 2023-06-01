@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getDetailFilm, getTheLoai } from "../../redux/reducer/DetailFilmSlice";
 import { getFilmHomePage } from "../../redux/reducer/ManagementFilmSlice";
 import HtmlParser from "react-html-parser";
@@ -9,12 +9,15 @@ import SlideCard from "../SlideCard/SlideCard";
 import Loading from "../Loading/Loading";
 import { displayPlayer, hiddenPlayer } from "../../redux/reducer/LoadingSlice";
 import LoadingPlayer from "../Loading/LoadingPlayer";
+import Video from "./Video/Video";
 
 function PlayerVideo() {
+  const navigate = useNavigate();
   const { name } = useParams();
   const dispatch = useDispatch();
   const detailFilm = useSelector((state) => state.DetailFilm.detailFilm);
   const PhimMoi = useSelector((state) => state.ManagementFilmSlice.PhimMoi);
+  const { linkFilm } = useSelector((state) => state.DetailFilm);
 
   const { listTheLoai } = useSelector((state) => state.DetailFilm);
 
@@ -22,27 +25,22 @@ function PlayerVideo() {
   const [episode, setEpisode] = useState(
     detailFilm?.item?.episodes[0]?.server_data[0]?.link_embed
   );
-  const [changeServe, setChangeServe] = useState(0);
 
-  //   console.log(detailFilm?.item?.episodes[0].server_data[0].link_embed);
-  //   console.log(name);
+  console.log(linkFilm);
+  const [changeServe, setChangeServe] = useState(0);
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(getDetailFilm(name));
+    dispatch(getDetailFilm({ name }));
     dispatch(getTheLoai(localStorage.getItem("randomCategory")));
     dispatch(getFilmHomePage());
-    dispatch(displayPlayer());
   }, []);
   return (
     <div className="bg-[#181616]  text-white pt-[1%]">
       <div className="relative w-full">
         <iframe
-          onLoad={() => {
-            dispatch(hiddenPlayer());
-          }}
           className="sm:h-[62vh] h-[30vh] w-full sm:w-[80%] m-auto sm:mt-[5rem] mt-[5rem] lg:mt-[6.3rem]"
           title="video player"
-          src={episode}
+          src={linkFilm}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen={true}
         />
@@ -56,7 +54,12 @@ function PlayerVideo() {
                 <div
                   key={i}
                   onClick={() => {
-                    setChangeServe(Number(server.server_name.slice(-1)) - 1);
+                    const index = detailFilm?.item?.episodes.findIndex(
+                      (se) => se.server_name === server.server_name
+                    );
+                    setChangeServe(index);
+
+                    dispatch(getDetailFilm({ name, server: index }));
                   }}
                   className=" mr-2 mb-2"
                 >
@@ -80,10 +83,19 @@ function PlayerVideo() {
                   <button
                     key={i}
                     onClick={() => {
-                      setEpisode(link.link_embed);
+                      const index = detailFilm?.item?.episodes[
+                        changeServe
+                      ]?.server_data.findIndex((ep) => ep.slug === link?.slug);
+                      dispatch(
+                        getDetailFilm({
+                          name,
+                          sever: changeServe,
+                          episodes: index,
+                        })
+                      );
                     }}
                     className={` mr-2 my-2 text-xs border-[2px] border-red-700 rounded-md z-20  text-white font-bold px-3 py-1  after:transition-all group  after:hover:translate-x-0 overflow-hidden relative after:content-[''] after:w-full after:h-full ${
-                      episode === link.link_embed
+                      linkFilm === link.link_embed
                         ? " sm:after:translate-x-[0%] after:bg-red-600 "
                         : " sm:after:translate-x-[-100%] after:bg-none "
                     }  after:absolute after:top-0 after:left-0 after:-z-10`}

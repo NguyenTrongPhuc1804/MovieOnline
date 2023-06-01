@@ -35,15 +35,12 @@ const ManagementFilmSlice = createSlice({
     });
     builder.addCase(getAllCountry.fulfilled, (state, action) => {
       state.AllCategoryFilm = action.payload;
-      console.log(action);
     });
     builder.addCase(getFilmSearch.fulfilled, (state, action) => {
       state.AllCategoryFilm = action.payload;
-      console.log(action);
     });
     builder.addCase(getListFilm.fulfilled, (state, action) => {
       state.AllCategoryFilm = action.payload;
-      console.log(action);
     });
   },
 });

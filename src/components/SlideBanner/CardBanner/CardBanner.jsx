@@ -25,7 +25,7 @@ function CardBanner(props) {
         setContent(film?.content);
       }
     }
-  }, [film?.content]);
+  }, []);
   return (
     <>
       <div
