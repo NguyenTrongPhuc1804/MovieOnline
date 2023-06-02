@@ -25,7 +25,6 @@ export const DetailFilm = createSlice({
         ].link_embed;
     });
     builder.addCase(getTheLoai.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.listTheLoai = action.payload;
     });
   },

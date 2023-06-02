@@ -26,7 +26,7 @@ function PlayerVideo() {
     detailFilm?.item?.episodes[0]?.server_data[0]?.link_embed
   );
 
-  console.log(linkFilm);
+  console.log(detailFilm);
   const [changeServe, setChangeServe] = useState(0);
   useEffect(() => {
     window.scrollTo(0, 0);

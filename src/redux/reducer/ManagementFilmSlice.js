@@ -51,7 +51,7 @@ export const getFilmHomePage = createAsyncThunk(
     try {
       let arrFilm = [];
       const { data } = await requestMovie.get("v1/api/home");
-      for (let i in data.items.slice(0, 5)) {
+      for (let i in data.items.splice(0, 5)) {
         let film = await requestMovie.get(`/phim/${data.items[i].slug}`);
         arrFilm.push(film.movie);
       }
