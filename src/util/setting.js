@@ -1,1 +1,1 @@
-export const DOMAIN = "https://ophim1.com";
+export const DOMAIN = import.meta.env.VITE_REACT_APP_MOVIE_API;
