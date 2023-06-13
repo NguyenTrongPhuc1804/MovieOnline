@@ -1,3 +1,6 @@
 .MuiPaginationItem-root.Mui-selected {
   color: red;
 }
+.hello {
+  color: green;
+}
